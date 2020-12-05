@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-const Navbar = ({token, setToken}) => {
+const Navbar = ({token}) => {
     return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">Todo Managery</Link>
@@ -22,15 +22,8 @@ const Navbar = ({token, setToken}) => {
                     <div className="dropdown-menu">
                     <Link className="dropdown-item" to="/new-todo">Add Todo</Link>
                     <Link className="dropdown-item" to="new-category">Add Category</Link>
-                    <div className="dropdown-divider"></div>
-                    <Link className="dropdown-item" to="/all-todos">See all todos</Link>
-                    <Link className="dropdown-item" to="/all-categories">See all categories</Link>
                     </div>
                 </li>
-                <li className="nav-item">
-                        <Link className="btn btn-outline-danger btn-sm" onClick={() => setToken(null)} to="/">Log Out
-                        </Link>
-                    </li>
                 </>
     
                     )}

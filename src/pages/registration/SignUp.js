@@ -1,10 +1,13 @@
 import {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 
-const SignUp = ({token, setToken}) => {
-  const [username, setUsername] = useState("");
+
+const SignUp = ({setToken, username, setUsername}) => {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [email, setEmail] = useState('');
+  const history = useHistory();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,6 +26,7 @@ const SignUp = ({token, setToken}) => {
       })
       const result = await res.json() 
       setToken(result.key)
+      history.push('/login');
     } catch (e) {
       console.log(e)
     }

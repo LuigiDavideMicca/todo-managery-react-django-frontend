@@ -27,7 +27,7 @@ const UpdateTodo = ({token}) => {
                 referrerPolicy: 'no-referrer',
                 body: JSON.stringify({title, text, done_by})
               })
-              history.push('/all-todos');
+              history.push('/');
             } catch (e) {
                 console.log(e)
         }

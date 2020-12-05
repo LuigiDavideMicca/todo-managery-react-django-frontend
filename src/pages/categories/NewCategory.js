@@ -22,7 +22,7 @@ const NewCategory = ({token}) => {
                 referrerPolicy: 'no-referrer',
                 body: JSON.stringify({title})
               })
-              history.push('/all-categories');
+              history.push('/');
             } catch (e) {
                 console.log(e)
         }

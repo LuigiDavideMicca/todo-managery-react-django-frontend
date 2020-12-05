@@ -22,14 +22,15 @@ const DeleteCategory = ({token}) => {
             referrerPolicy: 'no-referrer',
           })
 
-          history.push('/all-categories');
+          history.push('/');
       }
   
 
     return (
         <div className="container">
             <h3 className="py-5 mb-4 d-flex justify-content-center">Erase your Category number {id} ?</h3>
-            <button className="btn btn-danger" onClick={eraseCategory}>Erase Category!</button>
+            <p className="lead my-5">By erasing the category you will also erase all the todos associated. Are you sure to continue?</p>
+            <button className="btn btn-danger" onClick={eraseCategory}>Erase Category !</button>
         </div>
     )
 }

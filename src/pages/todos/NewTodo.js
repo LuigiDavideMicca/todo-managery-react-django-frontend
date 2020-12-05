@@ -50,7 +50,7 @@ const NewTodo = ({token}) => {
                 referrerPolicy: 'no-referrer',
                 body: JSON.stringify({title, text, category, done_by})
               })
-              history.push('/all-todos');
+              history.push('/');
             } catch (e) {
                 console.log(e)
         }

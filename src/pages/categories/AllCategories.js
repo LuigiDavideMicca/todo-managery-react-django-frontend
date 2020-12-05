@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import Categories from '../../components/Categories';
 
-const AllCategories = (props) => {
-  const [lastTodos, setLastTodos] = useState('');
+const AllCategories = ({token}) => {
+  const [categories, setCategories] = useState('');
   useEffect(() => {
-    async function getLastTodos() {
+    async function getAllCategories() {
 
         const resp = await fetch('http://127.0.0.1:8000/api/v1/categories/', {
           method: 'GET',
           mode: 'cors', // no-cors, *cors, same-origin
           credentials: 'same-origin', // include, *same-origin, omit
           headers: {
-            'Authorization': `Token ${props.token}`,
+            'Authorization': `Token ${token}`,
             'Content-Type': 'application/json'
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
@@ -19,9 +19,9 @@ const AllCategories = (props) => {
           referrerPolicy: 'no-referrer',
         })
         const results = await resp.json();
-        setLastTodos(results) 
+        setCategories(results) 
     }
-    getLastTodos()
+    getAllCategories()
     }, [])
 
 
@@ -30,9 +30,9 @@ const AllCategories = (props) => {
     <div className="container">
       <h3 className="display-5 py-5 mb-4 d-flex justify-content-center">Your Categories</h3>
       <div className="row">
-        {lastTodos.length > 0 && lastTodos.map(item => 
+        {categories.length > 0 && categories.map(category => 
           <div className="col-6">
-              <Categories key={item.id} title={item.title} id={item.id} /> 
+              <Categories key={category.id} title={category.title} id={category.id} /> 
           </div>
             )}
       </div>
