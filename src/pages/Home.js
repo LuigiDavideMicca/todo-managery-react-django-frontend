@@ -65,7 +65,7 @@ const Home = ({categories, setCategories, todos, setTodos, token}) => {
     }, [])
 
 
-    todos = todos.slice(0,4)
+    todos = todos.length > 0 && todos.slice(0,4)
   return (
     <div className="container">
       <div className="jumbotron my-4">

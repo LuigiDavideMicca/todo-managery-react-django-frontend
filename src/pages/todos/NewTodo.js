@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const NewTodo = ({token}) => {
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [category, setCategory] = useState('')
     const [done_by, setDate] = useState('');
@@ -11,7 +11,7 @@ const NewTodo = ({token}) => {
     const history = useHistory();
 
     useEffect(() => {
-        async function getLastTodos() {
+        async function getCategories() {
             const resp = await fetch('http://127.0.0.1:8000/api/v1/categories/', {
               method: 'GET',
               mode: 'cors', // no-cors, *cors, same-origin
@@ -26,12 +26,12 @@ const NewTodo = ({token}) => {
             })
             const results = await resp.json();
             const res = [];
-            for (let i=0; i<results.length; i++) {
+            for (let i = 0; i <results.length; i++) {
                 res.push(results[i])
             }
             setTitles(res)
         }
-        getLastTodos()
+        getCategories()
         }, [])
     
     const createTodo = async(event) => {

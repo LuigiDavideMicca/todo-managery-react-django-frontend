@@ -6,6 +6,8 @@ const SignUp = ({setToken, username, setUsername}) => {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [email, setEmail] = useState('');
+  const [nonFiledErrors, setNonFiledErrors] = useState('');
+  const [errors, setErrors] = useState('');
   const history = useHistory();
 
 
@@ -26,16 +28,29 @@ const SignUp = ({setToken, username, setUsername}) => {
       })
       const result = await res.json() 
       setToken(result.key)
-      sessionStorage.setItem('token', result.key)
-      history.push('/login');
+      setErrors(Object.values(result))
+      setNonFiledErrors(result.non_field_errors)
+      result.key && sessionStorage.setItem('token', result.key)
+      result.key && history.push('/login');
     } catch (e) {
       console.log(e)
     }
-
   }
   return (
     <div className="container">
         <h2 className="py-5 mb-4 d-flex justify-content-center">Sign Up</h2>
+        {nonFiledErrors && nonFiledErrors.map(error => 
+        <div className="alert alert-warning" key={error}>
+          <h4 className="alert-heading">Warning!</h4>
+          <p className="mb-0">{error}</p>
+        </div> 
+        )}
+        {errors && errors.map(error => 
+        <div className="alert alert-danger" key={error}>
+          <h4 className="alert-heading">Error!</h4>
+          <p className="mb-0">{error}</p>
+        </div> 
+        )}
       <form  className="form-group my-3" onSubmit={handleSubmit}>
         <input type="text"
           required

@@ -3,6 +3,10 @@ import {Link} from 'react-router-dom';
 import './sidebar.css';
 
 const Sidebar = ({token, setToken, categories, children}) => {
+  const removeToken = () => {
+    setToken(null);
+    sessionStorage.clear()
+  }
     return (
       <>
         {!token ? 
@@ -26,7 +30,7 @@ const Sidebar = ({token, setToken, categories, children}) => {
             ) :
               <div className="list-group-item list-group-item-action bg-light">No categories created</div>
             }
-            <Link className="btn btn-outline-danger btn-sm mt-5" onClick={() => setToken(null)} to="/">
+            <Link className="btn btn-outline-danger btn-sm mt-5" onClick={removeToken} to="/">
               Log Out
             </Link>
           </div>

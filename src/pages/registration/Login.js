@@ -3,6 +3,7 @@ import {useState} from 'react';
 const Login = ({setToken, username, setUsername}) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,7 +22,8 @@ const Login = ({setToken, username, setUsername}) => {
       })
       const result = await res.json() 
       setToken(result.key)
-      sessionStorage.setItem('token', result.key)
+      setErrors(result.non_field_errors)
+      result.key && sessionStorage.setItem('token', result.key)
     } catch (e) {
       console.log(e)
     }
@@ -29,6 +31,12 @@ const Login = ({setToken, username, setUsername}) => {
   return (
     <div className="container">
         <h2 className="py-5 mb-4 d-flex justify-content-center">LOG IN</h2>
+        {errors && errors.map(error => 
+        <div className="alert alert-warning" key={error}>
+          <h4 className="alert-heading">Error!</h4>
+          <p className="mb-0">{error}</p>
+        </div> 
+        )}
       <form  className="form-group my-3" onSubmit={handleSubmit}>
         <input type="text"
           required
