@@ -12,13 +12,13 @@ const Todos = ({title, text, done_by, id, category}) => {
                             <h4 className="card-title">{title}</h4>
                             <p className="card-text">{text} </p>
                         </div>
-                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <button type="button" class="btn btn-danger">actions</button>
+                        <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" className="btn btn-danger">actions</button>
                             <div class="btn-group" role="group">
-                                <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
-                                <Link class="dropdown-item" to={`/update-todo/${id}`}>Change Todo</Link>
-                                <Link class="dropdown-item" to={`/delete-todo/${id}`}>Delete Todo</Link>
+                                <button id="btnGroupDrop4" type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div className="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                                <Link className="dropdown-item" to={`/update-todo/${id}`}>Change Todo</Link>
+                                <Link className="dropdown-item" to={`/delete-todo/${id}`}>Delete Todo</Link>
                                 </div>
                             </div>
                             </div>

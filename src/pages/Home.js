@@ -5,6 +5,7 @@ import Todos from '../components/Todos';
 
 const Home = ({categories, setCategories, todos, setTodos, token}) => {
   const [user, setUser] = useState('');
+  const [lastTodos, setLastTodos] = useState('');
   useEffect(() => {
     async function getTodos() {
         const resp = await fetch('http://127.0.0.1:8000/api/v1/todos/', {
@@ -20,7 +21,8 @@ const Home = ({categories, setCategories, todos, setTodos, token}) => {
           referrerPolicy: 'no-referrer',
         })
         const results = await resp.json();
-        setTodos(results) 
+        setTodos(results)
+        setLastTodos(results.slice(0,4)) 
     }
     async function getUsers() {
       try {
@@ -65,7 +67,6 @@ const Home = ({categories, setCategories, todos, setTodos, token}) => {
     }, [])
 
 
-    todos = todos.length > 0 && todos.slice(0,4)
   return (
     <div className="container">
       <div className="jumbotron my-4">
@@ -74,11 +75,11 @@ const Home = ({categories, setCategories, todos, setTodos, token}) => {
         <hr className="my-4"/>
         <p>There are {categories && categories.length} categories in your Todo Managery.</p>
       </div>
-      {todos.length > 0 ?
+      {lastTodos.length > 0 ?
       <>
       <h3 className="display-5 py-5 mb-4 d-flex justify-content-center">Your Last Todos</h3>
       <div className="row">
-        {todos.map(todo => 
+        {lastTodos.map(todo => 
           <div className="col-6">
               <Todos key={todo.id} title={todo.title} text={todo.text} done_by={todo.done_by} id={todo.id} category={todo.category} /> 
           </div>
