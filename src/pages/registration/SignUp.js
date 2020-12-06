@@ -26,6 +26,7 @@ const SignUp = ({setToken, username, setUsername}) => {
       })
       const result = await res.json() 
       setToken(result.key)
+      sessionStorage.setItem('token', result.key)
       history.push('/login');
     } catch (e) {
       console.log(e)

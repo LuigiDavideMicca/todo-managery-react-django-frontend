@@ -45,10 +45,10 @@ const router = ({token, setToken, username, setUsername, categories, setCategori
           {token ? <UpdateTodo token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
         </Route>
         <Route path="/all-todos">
-          {token ? <AllTodos token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? <AllTodos todos={todos} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
         </Route>
         <Route path="/all-categories">
-          {token ? <AllCategories token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? <AllCategories categories={categories} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
         </Route>
         <Route path="/new-category">
           {token ? <NewCategory token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}

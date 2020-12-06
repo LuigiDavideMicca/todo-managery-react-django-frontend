@@ -17,14 +17,17 @@ const Sidebar = ({token, setToken, categories, children}) => {
             <Link className="list-group-item list-group-item-action bg-light" to="/all-todos">See all todos</Link>
              <Link className="list-group-item list-group-item-action bg-light" to="/all-categories">See all categories</Link>
             </div>
-          <div classNamw="sidebar-heading mt-3">Categories</div>
+          <div className="sidebar-heading mt-3">Categories</div>
           <div className="list-group list-group-flush">
             {categories.length > 0 ? categories.map( category =>
-            <Link to={`/category-todos/${category.title}`} className="list-group-item list-group-item-action bg-light">{category.title}</Link>
+              <Link key={category.id} to={`/category-todos/${category.title}`} className="list-group-item list-group-item-action bg-light">
+                {category.title}
+              </Link>
             ) :
               <div className="list-group-item list-group-item-action bg-light">No categories created</div>
             }
-            <Link className="btn btn-outline-danger btn-sm mt-5" onClick={() => setToken(null)} to="/">Log Out
+            <Link className="btn btn-outline-danger btn-sm mt-5" onClick={() => setToken(null)} to="/">
+              Log Out
             </Link>
           </div>
         </div>

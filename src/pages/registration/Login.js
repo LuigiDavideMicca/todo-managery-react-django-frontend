@@ -21,6 +21,7 @@ const Login = ({setToken, username, setUsername}) => {
       })
       const result = await res.json() 
       setToken(result.key)
+      sessionStorage.setItem('token', result.key)
     } catch (e) {
       console.log(e)
     }

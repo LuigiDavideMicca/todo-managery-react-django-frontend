@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
 const NewCategory = ({token}) => {
@@ -6,7 +6,7 @@ const NewCategory = ({token}) => {
   
     const history = useHistory();
     
-    const createTodo = async(event) => {
+    const createCategory = async(event) => {
         event.preventDefault();
         try {
             await fetch(`http://127.0.0.1:8000/api/v1/categories/`, {
@@ -32,7 +32,7 @@ const NewCategory = ({token}) => {
         <>
         <div className="container">
         <h3 className="py-5 mb-4 d-flex justify-content-center">Create a new Catgory</h3>
-        <form  className="form-group my-3" onSubmit={createTodo}>
+        <form  className="form-group my-3" onSubmit={createCategory}>
         <input type="text"
           required
           value={title}

@@ -4,7 +4,7 @@ import Todos from '../../components/Todos';
 const CategoriesTodo = ({todos}) => {
     const location = useLocation();
     const title = location.pathname.split('/category-todos/').pop()
-    todos = todos.length > 0 ? todos = todos.filter(todo => todo.category === title) : todos;
+    todos = todos.length > 0 ? todos.filter(todo => todo.category === title) : [];
     return (
       <div className="container">
         {todos.length > 0 ? 
@@ -13,7 +13,7 @@ const CategoriesTodo = ({todos}) => {
         <h3 className="display-5 py-5 mb-5 d-flex justify-content-center"><strong>{title}</strong></h3>
         <div className="row">
           {todos.map(todo => 
-            <div className="col-6">
+            <div className="col-6" key={todo.id}>
                 <Todos key={todo.id} title={todo.title} text={todo.text} done_by={todo.done_by} id={todo.id} category={todo.category} /> 
             </div>
               )}

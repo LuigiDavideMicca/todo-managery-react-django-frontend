@@ -21,7 +21,7 @@ const Navbar = ({token}) => {
                     <a className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick Actions</a>
                     <div className="dropdown-menu">
                     <Link className="dropdown-item" to="/new-todo">Add Todo</Link>
-                    <Link className="dropdown-item" to="new-category">Add Category</Link>
+                    <Link className="dropdown-item" to="/new-category">Add Category</Link>
                     </div>
                 </li>
                 </>

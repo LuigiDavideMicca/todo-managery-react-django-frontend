@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import Todos from '../components/Todos';
 
-const Home = ({categories, setCategories, todos, setTodos, username, token}) => {
+const Home = ({categories, setCategories, todos, setTodos, token}) => {
   const [user, setUser] = useState('');
   useEffect(() => {
     async function getTodos() {
@@ -24,7 +24,7 @@ const Home = ({categories, setCategories, todos, setTodos, username, token}) => 
     }
     async function getUsers() {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/v1/users/', {
+        const res = await fetch('http://127.0.0.1:8000/api-auth/user/ ', {
           method: 'GET',
           mode: 'cors', // no-cors, *cors, same-origin
           credentials: 'same-origin', // include, *same-origin, omit
@@ -37,8 +37,7 @@ const Home = ({categories, setCategories, todos, setTodos, username, token}) => 
           referrerPolicy: 'no-referrer',
         })
         const result = await res.json() 
-        const myprofile = result.filter(item => item.username === username)
-        setUser(myprofile)
+        setUser(result)
       } catch (e) {
         console.log(e)
       }
@@ -70,8 +69,8 @@ const Home = ({categories, setCategories, todos, setTodos, username, token}) => 
   return (
     <div className="container">
       <div className="jumbotron my-4">
-        <h1 className="display-3">Hello, {user && user[0].username}</h1>
-        <p className="lead">You have created {user && user[0].todos.length} todos for now</p>
+        <h1 className="display-3">Hello, {user && user.username}</h1>
+        <p className="lead">You have created {todos && todos.length} todos for now</p>
         <hr className="my-4"/>
         <p>There are {categories && categories.length} categories in your Todo Managery.</p>
       </div>
@@ -79,9 +78,9 @@ const Home = ({categories, setCategories, todos, setTodos, username, token}) => 
       <>
       <h3 className="display-5 py-5 mb-4 d-flex justify-content-center">Your Last Todos</h3>
       <div className="row">
-        {todos.map(item => 
+        {todos.map(todo => 
           <div className="col-6">
-              <Todos key={item.id} title={item.title} text={item.text} done_by={item.done_by} id={item.id} category={item.category} /> 
+              <Todos key={todo.id} title={todo.title} text={todo.text} done_by={todo.done_by} id={todo.id} category={todo.category} /> 
           </div>
             )}
       </div>
