@@ -1,9 +1,13 @@
 import {Link} from 'react-router-dom';
+import '../images/pic.ico';
 
 const Navbar = ({token}) => {
     return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <Link className="navbar-brand" to="/">Todo Managery</Link>
+        <Link className="navbar-brand" to="/">
+        <img src="pic.ico" width="30" height="30" className="d-inline-block align-top mx-4" alt="" />
+            Todo Managery
+        </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>

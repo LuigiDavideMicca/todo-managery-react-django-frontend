@@ -77,7 +77,7 @@ const Home = ({categories, setCategories, todos, setTodos, token}) => {
       </div>
       {lastTodos.length > 0 ?
       <>
-      <h3 className="display-5 py-5 mb-4 d-flex justify-content-center">Your Last Todos</h3>
+      <h3 className="display-5 py-5 mb-4 d-flex justify-content-center">Your Todos Expirig Soon</h3>
       <div className="row">
         {lastTodos.map(todo => 
           <div className="col-6">
