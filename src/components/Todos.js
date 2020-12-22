@@ -6,7 +6,7 @@ const Todos = ({title, text, done_by, id, category}) => {
     return (
         <>
         <div className="container">
-                    <div className="card text-white bg-dark mb-3" style={{maxWidth: '20rem'}}>
+                    <div className="card text-white bg-dark my-4" style={{maxWidth: '20rem'}}>
                         <div className="card-header small">Category: {category} </div>
                         <div className="card-body">
                             <h4 className="card-title">{title}</h4>

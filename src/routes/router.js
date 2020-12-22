@@ -12,6 +12,7 @@ import NewTodo from '../pages/todos/NewTodo';
 import DeleteTodo from '../pages/todos/DeleteTodo';
 import UpdateTodo from '../pages/todos/UpdateTodo';
 import AllTodos from '../pages/todos/AllTodos';
+import Calendar from '../pages/Calendar';
 import AllCategories from '../pages/categories/AllCategories';
 import NewCategory from '../pages/categories/NewCategory';
 import DeleteCategory from '../pages/categories/DeleteCategory';
@@ -28,6 +29,9 @@ const router = ({token, setToken, username, setUsername, categories, setCategori
       <Switch>
         <Route exact path="/">
           {token ? <Home categories={categories} setCategories={setCategories} todos={todos} setTodos={setTodos} username={username} token={token} /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/calendar">
+          {token ? <Calendar todos={todos} /> : <Redirect to="/login" />}
         </Route>
         <Route path="/login">
             {token ? <Home categories={categories} setCategories={setCategories} todos={todos} setTodos={setTodos} username={username} token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}

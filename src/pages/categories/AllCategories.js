@@ -11,6 +11,12 @@ const AllCategories = ({categories}) => {
           </div>
             )}
       </div>
+      {categories.length === 0 && 
+            <>
+              <h3 className="display-5 pt-5 pb-4 my-1 d-flex justify-content-center">We're sorry</h3>
+              <h3 className="display-5 pt-5 pb-4 my-1 d-flex justify-content-center">It looks like you haven't created any category</h3>
+            </>
+      }
     </div>
   );
 }

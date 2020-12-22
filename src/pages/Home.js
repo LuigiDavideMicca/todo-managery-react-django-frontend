@@ -75,32 +75,37 @@ const Home = ({categories, setCategories, todos, setTodos, token}) => {
         <hr className="my-4"/>
         <p>There are {categories && categories.length} categories in your Todo Managery.</p>
       </div>
-      {lastTodos.length > 0 ?
-      <>
-      <h3 className="display-5 py-5 mb-4 d-flex justify-content-center">Your Todos Expirig Soon</h3>
-      <div className="row">
-        {lastTodos.map(todo => 
-          <div className="col-6">
-              <Todos key={todo.id} title={todo.title} text={todo.text} done_by={todo.done_by} id={todo.id} category={todo.category} /> 
+      {lastTodos.length > 0 &&
+        <>
+          <h3 className="display-5 py-5 mb-4 d-flex justify-content-center">Your Todos Expirig Soon</h3>
+          <div className="row">
+            {lastTodos.map(todo => 
+              <div className="col-6">
+                  <Todos key={todo.id} title={todo.title} text={todo.text} done_by={todo.done_by} id={todo.id} category={todo.category} /> 
+              </div>
+                )}
           </div>
-            )}
-      </div>
-      </>
-    :
+        </>
+      }
+      {categories.length === 0 && 
     <>
-      <div className="row py-4 px-5">
-        <h4>Start from Here</h4>
-      </div>
-      <div className="row">
-        <div className="col-6">
-          <Link className="btn btn-outline-dark" to="/new-todo">Add Todo</Link>
-        </div>
-        <div className="col-6">
-          <Link className="btn btn-outline-primary" to="new-category">Add Category</Link>
-        </div>
+    <div className="my-5 px-5 mx-auto">
+      <h4>Start from Here</h4>
     </div>
-  </>
-}
+      <div className="col-6 my-4 mx-auto">
+        <Link className="btn btn-outline-primary" to="new-category">Add Your First Category</Link>
+  </div>
+</>
+    }
+      {categories.length > 0 && lastTodos.length === 0 &&
+    <>
+    <div className="py-4 px-5 mx-auto">
+      <h4>Start from Here</h4>
+    </div>
+        <Link className="btn btn-outline-dark mx-5 my-4" to="/new-todo">Add Todo</Link>
+        <Link className="btn btn-outline-primary mx-5 my-4" to="new-category">Add Another Category</Link>
+</>
+    }
     </div>
   );
 }

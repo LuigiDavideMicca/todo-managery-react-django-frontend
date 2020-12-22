@@ -4,7 +4,7 @@ const Categories = ({title, id}) => {
     return (
         <>
         <div className="container">
-                    <div className="card text-white bg-dark border-secondary mb-3" style={{maxWidth: '20rem'}}>
+                    <div className="card text-white bg-dark border-secondary my-4" style={{maxWidth: '20rem'}}>
                         <div className="card-body">
                             <h4 className="card-title">{title}</h4>
                         </div>
