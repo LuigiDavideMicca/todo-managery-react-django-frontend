@@ -18,9 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "husky install",
-    "lint": "eslint .",
-    "precommit": "yarn lint && yarn test",
-    "prepush": "yarn lint"
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -54,10 +52,7 @@
   },
   "husky": {
     "hooks": {
-      "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
-      "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
-      "post-applypatch": "echo \"[Husky] post-applypatch\"",
-      "pre-commit": "echo \"[Husky] pre-commit\""
+      "pre-commit": "yarn lint"
     }
   },
   "lint-staged": {
