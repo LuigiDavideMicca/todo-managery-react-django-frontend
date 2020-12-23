@@ -1,4 +1,5 @@
-import {useState} from 'react';
+/* eslint-disable no-undef */
+import { useState } from 'react';
 import Router from './routes/router';
 
 const App = () => {
@@ -10,18 +11,18 @@ const App = () => {
   const [todos, setTodos] = useState('');
   return (
     <>
-      <Router 
-        token={token} 
-        setToken={setToken} 
-        username={username} 
+      <Router
+        token={token}
+        setToken={setToken}
+        username={username}
         setUsername={setUsername}
         categories={categories}
         setCategories={setCategories}
         todos={todos}
         setTodos={setTodos}
-       />
+      />
     </>
   );
-}
+};
 
 export default App;

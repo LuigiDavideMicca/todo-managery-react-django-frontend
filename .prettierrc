@@ -1,0 +1,7 @@
+{
+  "tabWidth": 2,
+  "arrowParens": "avoid",
+  "jsxBracketSameLine": true,
+  "printWidth": 100,
+  "singleQuote": true
+  }

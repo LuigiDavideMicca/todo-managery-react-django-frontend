@@ -1,9 +1,7 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+/* eslint-disable react/jsx-closing-bracket-location */
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/registration/Login';
 import SignUp from '../pages/registration/SignUp';
@@ -21,58 +19,129 @@ import CategoryTodo from '../pages/categories/CategoryTodos';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 
-const router = ({token, setToken, username, setUsername, categories, setCategories, todos, setTodos}) => {
-  return (
-    <Router>
-      <Navbar token={token} />
-      <Sidebar setToken={setToken} token={token} categories={categories}>
+const router = ({
+  token,
+  setToken,
+  username,
+  setUsername,
+  categories,
+  setCategories,
+  todos,
+  setTodos,
+}) => (
+  <Router>
+    <Navbar token={token} />
+    <Sidebar
+      setToken={setToken}
+      token={token}
+      categories={categories}
+      setCategories={setCategories}>
       <Switch>
         <Route exact path="/">
-          {token ? <Home categories={categories} setCategories={setCategories} todos={todos} setTodos={setTodos} username={username} token={token} /> : <Redirect to="/login" />}
+          {token ? (
+            <Home
+              categories={categories}
+              setCategories={setCategories}
+              todos={todos}
+              setTodos={setTodos}
+              username={username}
+              token={token}
+            />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/calendar">
-          {token ? <Calendar todos={todos} /> : <Redirect to="/login" />}
+          {token ? (
+            <Calendar token={token} setTodos={setTodos} todos={todos} />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route path="/login">
-            {token ? <Home categories={categories} setCategories={setCategories} todos={todos} setTodos={setTodos} username={username} token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <Home
+              categories={categories}
+              setCategories={setCategories}
+              todos={todos}
+              setTodos={setTodos}
+              username={username}
+              token={token}
+            />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
-          <Route path="/signup">
+        <Route path="/signup">
           {!token && <SignUp setToken={setToken} username={username} setUsername={setUsername} />}
         </Route>
         <Route path="/new-todo">
-          {token ? <NewTodo token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <NewTodo token={token} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
         <Route path="/delete-todo">
-          {token ? <DeleteTodo token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <DeleteTodo token={token} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
         <Route path="/update-todo">
-          {token ? <UpdateTodo token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <UpdateTodo token={token} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
         <Route path="/all-todos">
-          {token ? <AllTodos todos={todos} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <AllTodos todos={todos} setTodos={setTodos} token={token} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
         <Route path="/all-categories">
-          {token ? <AllCategories categories={categories} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <AllCategories categories={categories} setCategories={setCategories} token={token} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
         <Route path="/new-category">
-          {token ? <NewCategory token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <NewCategory token={token} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
         <Route path="/delete-category">
-          {token ? <DeleteCategory token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <DeleteCategory token={token} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
         <Route path="/edit-category">
-          {token ? <EditCategory token={token} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <EditCategory token={token} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
         <Route path="/category-todos">
-          {token ? <CategoryTodo todos={todos} /> : <Login setToken={setToken} username={username} setUsername={setUsername} />}
+          {token ? (
+            <CategoryTodo todos={todos} token={token} setTodos={setTodos} />
+          ) : (
+            <Login setToken={setToken} username={username} setUsername={setUsername} />
+          )}
         </Route>
-        <Route path="*">
-        {token ? <NoPage /> : <Redirect to="/login" />}
-        </Route>
+        <Route path="*">{token ? <NoPage /> : <Redirect to="/login" />}</Route>
       </Switch>
-      </Sidebar>
-    </Router>
-  );
-}
+    </Sidebar>
+  </Router>
+);
 
 export default router;

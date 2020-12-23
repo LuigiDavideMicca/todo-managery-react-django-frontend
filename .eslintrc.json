@@ -1,0 +1,26 @@
+{
+    "extends": ["airbnb", "prettier"],
+    "plugins": ["prettier", "react"],
+    "rules": {
+      "prettier/prettier": ["error"],
+      "react/react-in-jsx-scope": "off",
+      "prefer-const": "warn",
+      "no-var": "error",
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "prefer-destructuring": "warn",
+      "no-const-assign": "error",
+      "no-new-object":"error",
+      "object-shorthand":"warn",
+      "quote-props":"error",
+      "no-array-constructor": "error",
+      "quotes":"warn",
+      "prefer-template":"error",
+      "template-curly-spacing":"error",
+      "no-useless-escape":"error",
+      "prefer-spread":"error",
+      "function-paren-newline":"error",
+      "prefer-arrow-callback":"error",
+      "arrow-spacing":"warn",
+      "no-confusing-arrow":"error"
+    }
+  }
