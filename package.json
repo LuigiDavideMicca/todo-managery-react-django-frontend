@@ -18,7 +18,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "husky install",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "precommit": "yarn lint && yarn test",
+    "prepush": "yarn lint"
   },
   "eslintConfig": {
     "extends": [
