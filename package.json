@@ -52,15 +52,17 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run eslint . -f"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,jsx}": [
+      "prettier --write",
       "eslint . --fix"
     ],
     "*.{json,md,html}": [
       "prettier --write"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   }
 }
