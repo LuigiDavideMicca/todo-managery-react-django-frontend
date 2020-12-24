@@ -11,7 +11,7 @@ const AllTodos = ({ todos, token, setTodos }) => {
     if (todos.length === 0) {
       async function getTodos() {
         try {
-          const resp = await fetch('http://127.0.0.1:8000/api/v1/todos/', {
+          const resp = await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/todos/', {
             method: 'GET',
             mode: 'cors',
             credentials: 'same-origin',
@@ -38,7 +38,7 @@ const AllTodos = ({ todos, token, setTodos }) => {
       <div className="row">
         {allTodos.length > 0 &&
           allTodos.map(todo => (
-            <div className="col-6" key={todo.id}>
+            <div className="col-md-6 col-sm-12" key={todo.id}>
               <Todos
                 key={todo.id}
                 title={todo.title}

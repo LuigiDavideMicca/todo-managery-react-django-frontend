@@ -15,17 +15,20 @@ const SignUp = ({ setToken, username, setUsername }) => {
   const handleSignup = async event => {
     event.preventDefault();
     try {
-      const res = await fetch('http://127.0.0.1:8000/api-auth/registration/', {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify({ username, password1, password2, email }),
-      });
+      const res = await fetch(
+        'https://luigidavidemicca.pythonanywhere.com/api-auth/registration/',
+        {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify({ username, password1, password2, email }),
+        }
+      );
       const result = await res.json();
       setToken(result.key);
       setErrors(Object.values(result));

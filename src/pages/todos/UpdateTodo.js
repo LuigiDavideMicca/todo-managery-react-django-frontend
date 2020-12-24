@@ -48,7 +48,7 @@ const UpdateTodo = ({ token }) => {
   const updateTodo = async event => {
     event.preventDefault();
     try {
-      await fetch(`http://127.0.0.1:8000/api/v1/todos/${id}/`, {
+      await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/todos/${id}/`, {
         method: 'PUT',
         mode: 'cors', // no-cors, *cors, same-origin
         credentials: 'same-origin', // include, *same-origin, omit

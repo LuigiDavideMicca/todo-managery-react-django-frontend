@@ -13,7 +13,7 @@ const DeleteCategory = ({ token }) => {
   const history = useHistory();
   const eraseCategory = async () => {
     confirm(`Are you sure you wanna erase category with id ${id}`);
-    await fetch(`http://127.0.0.1:8000/api/v1/categories/${id}`, {
+    await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/categories/${id}`, {
       method: 'DELETE',
       mode: 'cors', // no-cors, *cors, same-origin
       credentials: 'same-origin', // include, *same-origin, omit
@@ -31,10 +31,7 @@ const DeleteCategory = ({ token }) => {
 
   return (
     <div className="container">
-      <h3 className="py-5 mb-4 d-flex justify-content-center">
-        Erase your Category number
-        {id}?
-      </h3>
+      <h3 className="py-5 mb-4 d-flex justify-content-center">Erase your Category number {id}?</h3>
       <p className="lead my-5">
         By erasing the category you will also erase all the todos associated. Are you sure to
         continue?

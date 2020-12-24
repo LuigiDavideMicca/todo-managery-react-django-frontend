@@ -11,7 +11,7 @@ const Login = ({ setToken, username, setUsername }) => {
   const handleLogin = async event => {
     event.preventDefault();
     try {
-      const res = await fetch('http://127.0.0.1:8000/api-auth/login/', {
+      const res = await fetch('https://luigidavidemicca.pythonanywhere.com/api-auth/login/', {
         method: 'POST',
         mode: 'cors',
         credentials: 'same-origin',

@@ -14,7 +14,7 @@ const EditCategory = ({ token }) => {
   const updateCategory = async event => {
     event.preventDefault();
     try {
-      await fetch(`http://127.0.0.1:8000/api/v1/categories/${id}/`, {
+      await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/categories/${id}/`, {
         method: 'PUT',
         mode: 'cors', // no-cors, *cors, same-origin
         credentials: 'same-origin', // include, *same-origin, omit

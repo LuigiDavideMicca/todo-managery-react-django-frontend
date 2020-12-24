@@ -10,17 +10,20 @@ const AllCategories = ({ categories, token, setCategories }) => {
     if (categories.length === 0) {
       async function getCategories() {
         try {
-          const resp = await fetch('http://127.0.0.1:8000/api/v1/categories/', {
-            method: 'GET',
-            mode: 'cors',
-            credentials: 'same-origin',
-            headers: {
-              Authorization: `Token ${token}`,
-              'Content-Type': 'application/json',
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-          });
+          const resp = await fetch(
+            'https://luigidavidemicca.pythonanywhere.com/api/v1/categories/',
+            {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'same-origin',
+              headers: {
+                Authorization: `Token ${token}`,
+                'Content-Type': 'application/json',
+              },
+              redirect: 'follow',
+              referrerPolicy: 'no-referrer',
+            }
+          );
           const results = await resp.json();
           setAllCategories(results);
           setCategories(results);
@@ -37,7 +40,7 @@ const AllCategories = ({ categories, token, setCategories }) => {
       <div className="row">
         {allCatgories.length > 0 &&
           allCatgories.map(category => (
-            <div className="col-6" key={category.id}>
+            <div className="col-md-6 col-sm-12" key={category.id}>
               <Categories key={category.id} title={category.title} id={category.id} />
             </div>
           ))}

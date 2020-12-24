@@ -20,7 +20,7 @@ const CategoriesTodo = ({ todos }) => {
           </h3>
           <div className="row">
             {todos.map(todo => (
-              <div className="col-6" key={todo.id}>
+              <div className="col-md-6 col-sm-12" key={todo.id}>
                 <Todos
                   key={todo.id}
                   title={todo.title}

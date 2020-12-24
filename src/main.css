@@ -1,0 +1,6 @@
+@media only screen and (max-width: 768px) {
+  .home-title {
+    font-size: 3em;
+    margin-bottom: 0.75em;
+  }
+}

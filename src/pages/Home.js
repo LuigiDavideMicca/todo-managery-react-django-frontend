@@ -6,13 +6,15 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Todos from '../components/Todos';
 
+import '../main.css';
+
 const Home = ({ categories, setCategories, todos, setTodos, token }) => {
   const [user, setUser] = useState('');
   const [lastTodos, setLastTodos] = useState('');
   useEffect(() => {
     async function getTodos() {
       try {
-        const resp = await fetch('http://127.0.0.1:8000/api/v1/todos/', {
+        const resp = await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/todos/', {
           method: 'GET',
           mode: 'cors',
           credentials: 'same-origin',
@@ -32,7 +34,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
     }
     async function getUsers() {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api-auth/user/ ', {
+        const res = await fetch('https://luigidavidemicca.pythonanywhere.com/api-auth/user/ ', {
           method: 'GET',
           mode: 'cors',
           credentials: 'same-origin',
@@ -51,7 +53,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
     }
     async function getCategories() {
       try {
-        const resp = await fetch('http://127.0.0.1:8000/api/v1/categories/', {
+        const resp = await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/categories/', {
           method: 'GET',
           mode: 'cors',
           credentials: 'same-origin',
@@ -76,7 +78,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
   return (
     <div className="container">
       <div className="jumbotron my-4">
-        <h1 className="display-3">
+        <h1 className="display-3 home-title" style={{}}>
           Hello,
           {user && user.username}
         </h1>
@@ -91,7 +93,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
           </h3>
           <div className="row">
             {lastTodos.map(todo => (
-              <div className="col-6">
+              <div className="col-md-6 col-sm-12">
                 <Todos
                   key={todo.id}
                   title={todo.title}

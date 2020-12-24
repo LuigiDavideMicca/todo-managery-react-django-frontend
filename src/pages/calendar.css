@@ -1,13 +1,22 @@
-.row-striped:nth-of-type(odd){
-    background-color: #e0e0e0;
-    border-left: 6px #000000 solid;
+.row-striped:nth-of-type(odd) {
+  background-color: #e0e0e0;
+  border-left: 6px #000000 solid;
+}
+
+.row-striped:nth-of-type(even) {
+  background-color: #c9c9e0;
+  border-left: 6px #2f00ff solid;
+}
+
+.row-striped {
+  padding: 15px 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .calendar-badge {
+    font-size: 1.3rem;
   }
-  
-  .row-striped:nth-of-type(even){
-    background-color: #c9c9e0;
-    border-left: 6px #2f00ff solid;
+  .calendar-date {
+    font-size: 0.75rem;
   }
-  
-  .row-striped {
-      padding: 15px 0;
-  }
+}

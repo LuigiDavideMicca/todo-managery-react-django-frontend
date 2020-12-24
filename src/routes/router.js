@@ -30,7 +30,7 @@ const router = ({
   setTodos,
 }) => (
   <Router>
-    <Navbar token={token} />
+    <Navbar token={token} setToken={setToken} />
     <Sidebar
       setToken={setToken}
       token={token}

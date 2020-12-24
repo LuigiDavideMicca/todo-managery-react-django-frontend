@@ -17,7 +17,7 @@ const NewTodo = ({ token }) => {
 
   useEffect(() => {
     async function getCategories() {
-      const resp = await fetch('http://127.0.0.1:8000/api/v1/categories/', {
+      const resp = await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/categories/', {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
         credentials: 'same-origin', // include, *same-origin, omit
@@ -43,7 +43,7 @@ const NewTodo = ({ token }) => {
   const createTodo = async event => {
     event.preventDefault();
     try {
-      await fetch('http://127.0.0.1:8000/api/v1/todos/', {
+      await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/todos/', {
         method: 'POST',
         mode: 'cors', // no-cors, *cors, same-origin
         credentials: 'same-origin', // include, *same-origin, omit

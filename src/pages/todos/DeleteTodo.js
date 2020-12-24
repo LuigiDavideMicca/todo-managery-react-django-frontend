@@ -14,7 +14,7 @@ const DeleteTodo = ({ token }) => {
   const history = useHistory();
   const eraseTodo = async () => {
     confirm(`Are you sure you wanna erase todo with id ${id}`);
-    await fetch(`http://127.0.0.1:8000/api/v1/todos/${id}`, {
+    await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/todos/${id}`, {
       method: 'DELETE',
       mode: 'cors', // no-cors, *cors, same-origin
       credentials: 'same-origin', // include, *same-origin, omit
@@ -33,10 +33,7 @@ const DeleteTodo = ({ token }) => {
 
   return (
     <div className="container">
-      <h3 className="py-5 mb-4 d-flex justify-content-center">
-        Erase your Todo number
-        {id}?
-      </h3>
+      <h3 className="py-5 mb-4 d-flex justify-content-center">Erase your Todo number {id}?</h3>
       <button className="btn btn-danger" onClick={eraseTodo}>
         Erase Todo!
       </button>

@@ -12,7 +12,7 @@ const Calendar = ({ todos, token, setTodos }) => {
     if (todos.length === 0) {
       async function getTodos() {
         try {
-          const resp = await fetch('http://127.0.0.1:8000/api/v1/todos/', {
+          const resp = await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/todos/', {
             method: 'GET',
             mode: 'cors',
             credentials: 'same-origin',
@@ -25,7 +25,7 @@ const Calendar = ({ todos, token, setTodos }) => {
           });
           const results = await resp.json();
           setCalendarTodos(results);
-          setTodos(results)
+          setTodos(results);
         } catch (e) {
           console.log(e);
         }
@@ -41,11 +41,11 @@ const Calendar = ({ todos, token, setTodos }) => {
           <div className="row row-striped my-5" key={todo.id}>
             <div className="col-2 text-right">
               <h3 className="display-4">
-                <span className="badge badge-primary">
+                <span className="badge badge-primary calendar-badge">
                   {todo.done_by.split('T').pop().replace('Z', '')}
                 </span>
               </h3>
-              <h4>{todo.done_by.split('T').shift()}</h4>
+              <h4 className="calendar-date">{todo.done_by.split('T').shift()}</h4>
             </div>
             <div className="col-10 pl-5">
               <h3 className="text-uppercase ml-5">
