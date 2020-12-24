@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import LogoHeader from '../../components/LogoHeader';
 
 const SignUp = ({ setToken, username, setUsername }) => {
   const [password1, setPassword1] = useState('');
@@ -41,7 +43,8 @@ const SignUp = ({ setToken, username, setUsername }) => {
   };
   return (
     <div className="container">
-      <h2 className="py-5 mb-4 d-flex justify-content-center">Sign Up</h2>
+      <LogoHeader />
+      <h2 className="py-5 mb-4 d-flex justify-content-center">Register</h2>
       {nonFiledErrors &&
         nonFiledErrors.map(error => (
           <div className="alert alert-warning" key={error}>
@@ -57,6 +60,7 @@ const SignUp = ({ setToken, username, setUsername }) => {
           </div>
         ))}
       <form className="form-group my-3" onSubmit={handleSignup}>
+        <label className="my-3 h5">Username</label>
         <input
           type="text"
           required
@@ -66,6 +70,7 @@ const SignUp = ({ setToken, username, setUsername }) => {
           onChange={e => setUsername(e.target.value)}
         />
         <br />
+        <label className="my-3 h5">Password</label>
         <input
           type="password"
           required
@@ -75,6 +80,7 @@ const SignUp = ({ setToken, username, setUsername }) => {
           onChange={e => setPassword1(e.target.value)}
         />
         <br />
+        <label className="my-3 h5">Repeat Password</label>
         <input
           type="password"
           required
@@ -84,6 +90,7 @@ const SignUp = ({ setToken, username, setUsername }) => {
           onChange={e => setPassword2(e.target.value)}
         />
         <br />
+        <label className="my-3 h5">Email</label>
         <input
           type="email"
           required
@@ -92,7 +99,7 @@ const SignUp = ({ setToken, username, setUsername }) => {
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
-        <button className="btn btn-warning my-4" type="submit">
+        <button className="btn btn-warning my-5" type="submit">
           REGISTER!
         </button>
       </form>

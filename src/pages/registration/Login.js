@@ -1,11 +1,14 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import LogoHeader from '../../components/LogoHeader';
 
 const Login = ({ setToken, username, setUsername }) => {
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [errors, setErrors] = useState('');
 
   const handleLogin = async event => {
@@ -20,7 +23,7 @@ const Login = ({ setToken, username, setUsername }) => {
         },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
-        body: JSON.stringify({ username, password, email }),
+        body: JSON.stringify({ username, password }),
       });
       const result = await res.json();
       setToken(result.key);
@@ -32,6 +35,7 @@ const Login = ({ setToken, username, setUsername }) => {
   };
   return (
     <div className="container">
+      <LogoHeader />
       <h2 className="py-5 mb-4 d-flex justify-content-center">LOG IN</h2>
       {errors &&
         errors.map(error => (
@@ -41,6 +45,7 @@ const Login = ({ setToken, username, setUsername }) => {
           </div>
         ))}
       <form className="form-group my-3" onSubmit={handleLogin}>
+        <label className="my-3 h5">Username</label>
         <input
           type="text"
           required
@@ -50,6 +55,7 @@ const Login = ({ setToken, username, setUsername }) => {
           onChange={e => setUsername(e.target.value)}
         />
         <br />
+        <label className="my-3 h5">Password</label>
         <input
           type="password"
           className="form-control"
@@ -59,18 +65,16 @@ const Login = ({ setToken, username, setUsername }) => {
           onChange={e => setPassword(e.target.value)}
         />
         <br />
-        <input
-          type="email"
-          required
-          className="form-control"
-          placeholder="your email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <button className="btn btn-success my-4" type="submit">
+        <button className="btn btn-success mt-5" type="submit">
           LOG IN!
         </button>
       </form>
+      <div className="text-muted mb-3" to="/login">
+        Do not have an account yet?{' '}
+        <Link className="text-primary h5" to="/signup">
+          Register Here
+        </Link>
+      </div>
     </div>
   );
 };

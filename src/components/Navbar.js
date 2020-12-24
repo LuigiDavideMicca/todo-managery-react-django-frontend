@@ -122,7 +122,7 @@ const Navbar = ({ token, setToken }) => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/signup">
-                  Sign Up
+                  Register
                 </Link>
               </li>
             </>
