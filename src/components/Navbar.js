@@ -69,9 +69,6 @@ const Navbar = ({ token, setToken }) => {
                     <Link className="dropdown-item" to="/new-category">
                       Add Category
                     </Link>
-                    <Link className="dropdown-item" to="/calendar">
-                      Calendar
-                    </Link>
                     <Link
                       className="dropdown-item bg-danger text-white"
                       onClick={removeToken}
@@ -103,9 +100,6 @@ const Navbar = ({ token, setToken }) => {
                     </Link>
                     <Link className="dropdown-item" to="/new-category">
                       Add Category
-                    </Link>
-                    <Link className="dropdown-item" to="/calendar">
-                      Calendar
                     </Link>
                   </div>
                 </li>
