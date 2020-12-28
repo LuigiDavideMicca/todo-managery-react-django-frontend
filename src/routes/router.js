@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable import/no-named-as-default */
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/registration/Login';
 import SignUp from '../pages/registration/SignUp';
@@ -29,7 +29,7 @@ const router = ({
   todos,
   setTodos,
 }) => (
-  <Router>
+  <Router basename="LuigiDavideMicca.github.io">
     <Navbar token={token} setToken={setToken} />
     <Sidebar
       setToken={setToken}
