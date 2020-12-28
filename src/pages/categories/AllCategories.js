@@ -51,10 +51,10 @@ const AllCategories = ({ categories, token, setCategories }) => {
         style={{ visibility: `${visible}` }}>
         Your Categories
       </h3>
-      <div className="row" style={{ visibility: `${visible}` }}>
+      <div className="row justify-content-center" style={{ visibility: `${visible}` }}>
         {allCatgories.length > 0 &&
           allCatgories.map(category => (
-            <div className="col-md-6 col-sm-12" key={category.id}>
+            <div className="col-md-6 col-sm-7" key={category.id}>
               <Categories key={category.id} title={category.title} id={category.id} />
             </div>
           ))}

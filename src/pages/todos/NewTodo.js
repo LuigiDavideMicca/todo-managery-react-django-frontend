@@ -5,6 +5,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const NewTodo = ({ token }) => {
   const [title, setTitle] = useState('');
@@ -19,14 +20,13 @@ const NewTodo = ({ token }) => {
     async function getCategories() {
       const resp = await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/categories/', {
         method: 'GET',
-        mode: 'cors', // no-cors, *cors, same-origin
-        credentials: 'same-origin', // include, *same-origin, omit
+        mode: 'cors',
+        credentials: 'same-origin',
         headers: {
           Authorization: `Token ${token}`,
           'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'follow', // manual, *follow, error
+        redirect: 'follow',
         referrerPolicy: 'no-referrer',
       });
       const results = await resp.json();
@@ -45,18 +45,21 @@ const NewTodo = ({ token }) => {
     try {
       await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/todos/', {
         method: 'POST',
-        mode: 'cors', // no-cors, *cors, same-origin
-        credentials: 'same-origin', // include, *same-origin, omit
+        mode: 'cors',
+        credentials: 'same-origin',
         headers: {
           Authorization: `Token ${token}`,
           'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'follow', // manual, *follow, error
+        redirect: 'follow',
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({ title, text, category, done_by }),
       });
-      history.push('/');
+      Swal.fire({
+        title: 'New Todo Created',
+        text: 'Your todo is been successfully added',
+        icon: 'success',
+      }).then(history.push('/'));
     } catch (e) {
       console.log(e);
     }

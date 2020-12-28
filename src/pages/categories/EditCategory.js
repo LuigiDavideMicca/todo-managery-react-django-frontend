@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const EditCategory = ({ token }) => {
   const [title, setTitle] = useState('');
@@ -16,18 +17,21 @@ const EditCategory = ({ token }) => {
     try {
       await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/categories/${id}/`, {
         method: 'PUT',
-        mode: 'cors', // no-cors, *cors, same-origin
-        credentials: 'same-origin', // include, *same-origin, omit
+        mode: 'cors',
+        credentials: 'same-origin',
         headers: {
           Authorization: `Token ${token}`,
           'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'follow', // manual, *follow, error
+        redirect: 'follow',
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({ title }),
       });
-      history.push('/');
+      Swal.fire({
+        title: 'Category Successfully Updated',
+        text: 'Your cetgory is been modified',
+        icon: 'success',
+      }).then(history.push('/'));
     } catch (e) {
       console.log(e);
     }

@@ -8,6 +8,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UpdateTodo = ({ token }) => {
   const [title, setTitle] = useState('');
@@ -22,16 +23,15 @@ const UpdateTodo = ({ token }) => {
 
   useEffect(() => {
     async function getCategories() {
-      const resp = await fetch('http://127.0.0.1:8000/api/v1/categories/', {
+      const resp = await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/categories/', {
         method: 'GET',
-        mode: 'cors', // no-cors, *cors, same-origin
-        credentials: 'same-origin', // include, *same-origin, omit
+        mode: 'cors',
+        credentials: 'same-origin',
         headers: {
           Authorization: `Token ${token}`,
           'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'follow', // manual, *follow, error
+        redirect: 'follow',
         referrerPolicy: 'no-referrer',
       });
       const results = await resp.json();
@@ -61,7 +61,11 @@ const UpdateTodo = ({ token }) => {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({ title, text, category, done_by }),
       });
-      history.push('/');
+      Swal.fire({
+        title: 'Todo Successfully Updated',
+        text: 'Your todo is been modified',
+        icon: 'success',
+      }).then(history.push('/'));
     } catch (e) {
       console.log(e);
     }

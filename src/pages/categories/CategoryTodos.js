@@ -18,9 +18,9 @@ const CategoriesTodo = ({ todos }) => {
           <h3 className="display-5 py-5 mb-5 d-flex justify-content-center">
             <strong>{title}</strong>
           </h3>
-          <div className="row">
+          <div className="row justify-content-center">
             {todos.map(todo => (
-              <div className="col-md-6 col-sm-12" key={todo.id}>
+              <div className="col-md-6 col-sm-7" key={todo.id}>
                 <Todos
                   key={todo.id}
                   title={todo.title}

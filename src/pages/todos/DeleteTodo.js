@@ -7,28 +7,35 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const DeleteTodo = ({ token }) => {
   const location = useLocation();
   const id = location.pathname.split('/delete-todo/').pop();
   const history = useHistory();
-  const eraseTodo = async () => {
-    confirm(`Are you sure you wanna erase todo with id ${id}`);
-    await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/todos/${id}`, {
-      method: 'DELETE',
-      mode: 'cors', // no-cors, *cors, same-origin
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        Authorization: `Token ${token}`,
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer',
-    });
-
-    alert('todo succesfully erased');
-    history.push('/');
+  const eraseTodo = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really wanna erase this todo?',
+      icon: 'warning',
+      confirmButtonText: 'Yes',
+    }).then(
+      async result =>
+        result.isConfirmed &&
+        // eslint-disable-next-line no-return-await
+        (await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/todos/${id}`, {
+          method: 'DELETE',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            Authorization: `Token ${token}`,
+            'Content-Type': 'application/json',
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+        }),
+        history.push('/'))
+    );
   };
 
   return (

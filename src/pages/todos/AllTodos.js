@@ -49,10 +49,10 @@ const AllTodos = ({ todos, token, setTodos }) => {
         style={{ visibility: `${visible}` }}>
         Your Todos
       </h3>
-      <div className="row" style={{ visibility: `${visible}` }}>
+      <div className="row justify-content-center" style={{ visibility: `${visible}` }}>
         {allTodos.length > 0 &&
           allTodos.map(todo => (
-            <div className="col-md-6 col-sm-12" key={todo.id}>
+            <div className="col-md-6 col-sm-7" key={todo.id}>
               <Todos
                 key={todo.id}
                 title={todo.title}

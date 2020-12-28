@@ -1,6 +1,6 @@
 .spinner {
+  filter: grayscale(100%);
   margin-top: 15em;
-  width: 25%;
   opacity: 70%;
   animation-name: spin;
   animation-duration: 2000ms;

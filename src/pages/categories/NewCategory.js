@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const NewCategory = ({ token }) => {
   const [title, setTitle] = useState('');
@@ -13,18 +14,21 @@ const NewCategory = ({ token }) => {
     try {
       await fetch('https://luigidavidemicca.pythonanywhere.com/api/v1/categories/', {
         method: 'POST',
-        mode: 'cors', // no-cors, *cors, same-origin
-        credentials: 'same-origin', // include, *same-origin, omit
+        mode: 'cors',
+        credentials: 'same-origin',
         headers: {
           Authorization: `Token ${token}`,
           'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'follow', // manual, *follow, error
+        redirect: 'follow',
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({ title }),
       });
-      history.push('/');
+      Swal.fire({
+        title: 'New Category Created',
+        text: 'Your category is been successfully added',
+        icon: 'success',
+      }).then(history.push('/'));
     } catch (e) {
       console.log(e);
     }

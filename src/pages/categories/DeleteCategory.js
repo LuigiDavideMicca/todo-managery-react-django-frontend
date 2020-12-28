@@ -6,27 +6,36 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const DeleteCategory = ({ token }) => {
   const location = useLocation();
   const id = location.pathname.split('/delete-category/').pop();
   const history = useHistory();
   const eraseCategory = async () => {
-    confirm(`Are you sure you wanna erase category with id ${id}`);
-    await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/categories/${id}`, {
-      method: 'DELETE',
-      mode: 'cors', // no-cors, *cors, same-origin
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        Authorization: `Token ${token}`,
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer',
-    });
-
-    history.push('/');
+    Swal.fire({
+      title: 'Are you sure?',
+      text:
+        'Do you really wanna erase this category? By erasing the category you will also erase all the todos associated',
+      icon: 'warning',
+      confirmButtonText: 'Yes',
+    }).then(
+      async result =>
+        result.isConfirmed &&
+        // eslint-disable-next-line no-return-await
+        (await fetch(`https://luigidavidemicca.pythonanywhere.com/api/v1/categories/${id}`, {
+          method: 'DELETE',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            Authorization: `Token ${token}`,
+            'Content-Type': 'application/json',
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+        }),
+        history.push('/'))
+    );
   };
 
   return (

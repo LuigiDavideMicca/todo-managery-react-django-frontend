@@ -104,9 +104,9 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
             >
               Your Todos Expirig Soon
             </h3>
-            <div className="row" style={{ visibility: `${visible}` }}>
+            <div className="row justify-content-center" style={{ visibility: `${visible}` }}>
               {lastTodos.map(todo => (
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6 col-sm-7">
                   <Todos
                     key={todo.id}
                     title={todo.title}
