@@ -17,7 +17,6 @@ import DeleteCategory from '../pages/categories/DeleteCategory';
 import EditCategory from '../pages/categories/EditCategory';
 import CategoryTodo from '../pages/categories/CategoryTodos';
 import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
 
 const router = ({
   token,
@@ -30,12 +29,7 @@ const router = ({
   setTodos,
 }) => (
   <Router>
-    <Navbar token={token} setToken={setToken} />
-    <Sidebar
-      setToken={setToken}
-      token={token}
-      categories={categories}
-      setCategories={setCategories}>
+    <Navbar token={token} setToken={setToken}>
       <Switch>
         <Route exact path="/">
           {token ? (
@@ -140,7 +134,7 @@ const router = ({
         </Route>
         <Route path="*">{token ? <NoPage /> : <Redirect to="/login" />}</Route>
       </Switch>
-    </Sidebar>
+    </Navbar>
   </Router>
 );
 

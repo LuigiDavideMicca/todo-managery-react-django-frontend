@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-undef */
@@ -5,6 +6,12 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+
 import Todos from '../components/Todos';
 import Spinner from '../components/Spinner';
 
@@ -84,29 +91,53 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
 
   return (
     <>
-      <div className="container">
+      <Container maxWidth="sm" style={{ textAlign: 'center' }}>
         <Spinner loading={loading} />
-        <div className="jumbotron my-4 text-center" style={{ visibility: `${visible}` }}>
-          <h1 className="display-3 home-title">
-            Hello,
-            {user && user.username}
-          </h1>
-          <p className="lead">You have created {todos && todos.length} todos for now</p>
-          <hr className="my-4" />
-          <p>There are {categories && categories.length} categories in your Todo Managery.</p>
-        </div>
+        <Card
+          raised="true"
+          style={{
+            visibility: `${visible}`,
+            paddingTop: '5rem',
+            paddingBottom: '5rem',
+            paddingLeft: '10rem',
+            paddingRight: '10rem',
+          }}>
+          <CardContent>
+            <Typography variant="h4" className="home-title">
+              Hello,
+              {user && user.username}
+            </Typography>
+            <br />
+            <Typography variant="h6">
+              You have created {todos && todos.length} todos for now
+            </Typography>
+            <br />
+            <Divider />
+            <br />
+            <Typography variant="p">
+              There are {categories && categories.length} categories in your Todo Managery.
+            </Typography>
+            <br />
+          </CardContent>
+        </Card>
+        <br />
+        <br />
+        <br />
         {lastTodos.length > 0 && (
           <>
-            <h3
-              className="display-5 py-5 mb-4 d-flex justify-content-center"
+            <Typography
+              variant="h5"
               // eslint-disable-next-line prettier/prettier
               style={{ visibility: `${visible}` }}
             >
               Your Todos Expirig Soon
-            </h3>
-            <div className="row justify-content-center" style={{ visibility: `${visible}` }}>
+            </Typography>
+            <br />
+            <br />
+            <br />
+            <div style={{ visibility: `${visible}` }}>
               {lastTodos.map(todo => (
-                <div className="col-md-6 col-sm-7">
+                <div>
                   <Todos
                     key={todo.id}
                     title={todo.title}
@@ -122,7 +153,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
         )}
         {categories.length === 0 && (
           <>
-            <div className="my-5 px-5 mx-auto" style={{ visibility: `${visible}` }}>
+            <div style={{ visibility: `${visible}` }}>
               <h4>Start from Here</h4>
             </div>
             <div className="col-6 my-4 mx-auto" style={{ visibility: `${visible}` }}>
@@ -145,7 +176,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
             </Link>
           </>
         )}
-      </div>
+      </Container>
     </>
   );
 };

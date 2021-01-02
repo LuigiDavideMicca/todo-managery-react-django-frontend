@@ -1,52 +1,53 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { Link } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
+import Card from '@material-ui/core/Card';
+import Container from '@material-ui/core/Container';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const Todos = ({ title, text, done_by, id, category }) => {
   // eslint-disable-next-line no-param-reassign
   done_by = done_by.replace('T', ' ').replace('Z', '');
   return (
     <>
-      <div className="container">
-        <div className="card text-white bg-dark my-4" style={{ maxWidth: '20rem' }}>
-          <div className="card-header small">
-            Category:
-            {category}
-          </div>
-          <div className="card-body">
-            <h4 className="card-title">{title}</h4>
-            <p className="card-text">{text}</p>
-          </div>
-          <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" className="btn btn-danger">
-              actions
-            </button>
-            <div className="btn-group" role="group">
-              <button
-                id="btnGroupDrop4"
-                type="button"
-                className="btn btn-danger dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              />
-              <div className="dropdown-menu" aria-labelledby="btnGroupDrop4">
-                <Link className="dropdown-item" to={`/update-todo/${id}`}>
+      <Container>
+        <Card variant="outlined">
+          <CardContent style={{ backgroundColor: '#2F2950', color: 'whitesmoke' }}>
+            <Typography gutterBottom>
+              Category:
+              {category}
+            </Typography>
+            <Typography variant="h4" component="h4" gutterBottom>
+              {title}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+              {text}
+            </Typography>
+            <Typography>
+              Done by:
+              {done_by}
+            </Typography>
+            <CardActions>
+              <Button size="small" color="primary">
+                <Link href={`/update-todo/${id}`} underline="none">
                   Change Todo
                 </Link>
-                <Link className="dropdown-item" to={`/delete-todo/${id}`}>
+              </Button>
+              <Button size="small">
+                <Link href={`/delete-todo/${id}`} underline="none">
                   Delete Todo
                 </Link>
-              </div>
-            </div>
-          </div>
-          <div className="card-footer small">
-            Done by:
-            {done_by}
-          </div>
-        </div>
-      </div>
+              </Button>
+            </CardActions>
+          </CardContent>
+        </Card>
+        <br />
+        <br />
+      </Container>
     </>
   );
 };

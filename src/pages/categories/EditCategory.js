@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -44,7 +45,8 @@ const EditCategory = ({ token }) => {
           Update your Category number
           {id}
         </h3>
-        <form className="form-group my-3" onSubmit={updateCategory}>
+        <form className="form-group my-4" onSubmit={updateCategory}>
+          <label className="my-3 h5">New Title</label>
           <input
             type="text"
             required

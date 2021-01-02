@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
 import LogoHeader from '../../components/LogoHeader';
 
 const Login = ({ setToken, username, setUsername }) => {
@@ -34,9 +38,9 @@ const Login = ({ setToken, username, setUsername }) => {
     }
   };
   return (
-    <div className="container">
+    <Container maxWidth="sm" style={{ textAlign: 'center' }}>
       <LogoHeader />
-      <h2 className="py-5 mb-4 d-flex justify-content-center">LOG IN</h2>
+      <Typography variant="h5">LOG IN</Typography>
       {errors &&
         errors.map(error => (
           <div className="alert alert-warning" key={error}>
@@ -44,38 +48,43 @@ const Login = ({ setToken, username, setUsername }) => {
             <p className="mb-0">{error}</p>
           </div>
         ))}
-      <form className="form-group my-3" onSubmit={handleLogin}>
-        <label className="my-3 h5">Username</label>
-        <input
-          type="text"
-          required
-          value={username}
-          className="form-control"
-          placeholder="your username"
-          onChange={e => setUsername(e.target.value)}
-        />
-        <br />
-        <label className="my-3 h5">Password</label>
-        <input
-          type="password"
-          className="form-control"
-          required
-          value={password}
-          placeholder="your password"
-          onChange={e => setPassword(e.target.value)}
-        />
-        <br />
-        <button className="btn btn-success mt-5" type="submit">
-          LOG IN!
-        </button>
-      </form>
-      <div className="text-muted mb-3" to="/login">
-        Do not have an account yet?{' '}
-        <Link className="text-primary h5" to="/signup">
-          Register Here
-        </Link>
-      </div>
-    </div>
+      <br />
+      <br />
+      <FormControl>
+        <form onSubmit={handleLogin}>
+          <TextField
+            id="outlined-basic"
+            value={username}
+            label="Your Username"
+            variant="outlined"
+            onChange={e => setUsername(e.target.value)}
+            required
+          />
+          <br />
+          <br />
+          <TextField
+            id="outlined-basic"
+            value={password}
+            label="Your Password"
+            variant="outlined"
+            type="password"
+            onChange={e => setPassword(e.target.value)}
+            required
+          />
+          <br />
+          <br />
+          <br />
+          <Button variant="contained" color="primary" type="submit">
+            Log In
+          </Button>
+        </form>
+      </FormControl>
+      <br />
+      <br />
+      <Typography>
+        Do not have an account yet? <Link href="/signup">Register Here</Link>
+      </Typography>
+    </Container>
   );
 };
 

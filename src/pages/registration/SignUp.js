@@ -1,9 +1,13 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
 import LogoHeader from '../../components/LogoHeader';
 
 const SignUp = ({ setToken, username, setUsername }) => {
@@ -42,9 +46,9 @@ const SignUp = ({ setToken, username, setUsername }) => {
     }
   };
   return (
-    <div className="container">
+    <Container style={{ textAlign: 'center' }} maxWidth="sm">
       <LogoHeader />
-      <h2 className="py-5 mb-4 d-flex justify-content-center">Register</h2>
+      <Typography variant="h5">REGISTER</Typography>
       {nonFiledErrors &&
         nonFiledErrors.map(error => (
           <div className="alert alert-warning" key={error}>
@@ -59,51 +63,56 @@ const SignUp = ({ setToken, username, setUsername }) => {
             <p className="mb-0">{error}</p>
           </div>
         ))}
-      <form className="form-group my-3" onSubmit={handleSignup}>
-        <label className="my-3 h5">Username</label>
-        <input
-          type="text"
-          required
-          value={username}
-          placeholder="your desired username"
-          className="form-control bordered"
-          onChange={e => setUsername(e.target.value)}
-        />
-        <br />
-        <label className="my-3 h5">Password</label>
-        <input
-          type="password"
-          required
-          placeholder="type your password"
-          className="form-control"
-          value={password1}
-          onChange={e => setPassword1(e.target.value)}
-        />
-        <br />
-        <label className="my-3 h5">Repeat Password</label>
-        <input
-          type="password"
-          required
-          className="form-control"
-          placeholder="confirm your password above"
-          value={password2}
-          onChange={e => setPassword2(e.target.value)}
-        />
-        <br />
-        <label className="my-3 h5">Email</label>
-        <input
-          type="email"
-          required
-          className="form-control"
-          placeholder="your email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <button className="btn btn-warning my-5" type="submit">
-          REGISTER!
-        </button>
-      </form>
-    </div>
+      <br />
+      <br />
+      <FormControl>
+        <form onSubmit={handleSignup}>
+          <TextField
+            required
+            variant="outlined"
+            value={username}
+            placeholder="your desired username"
+            onChange={e => setUsername(e.target.value)}
+          />
+          <br />
+          <br />
+          <TextField
+            type="password"
+            variant="outlined"
+            required
+            placeholder="type your password"
+            value={password1}
+            onChange={e => setPassword1(e.target.value)}
+          />
+          <br />
+          <br />
+          <TextField
+            type="password"
+            variant="outlined"
+            required
+            placeholder="confirm your password above"
+            value={password2}
+            onChange={e => setPassword2(e.target.value)}
+          />
+          <br />
+          <br />
+          <TextField
+            type="email"
+            variant="outlined"
+            required
+            placeholder="your email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <br />
+          <br />
+          <Button variant="contained" color="primary" type="submit">
+            Register
+          </Button>
+          <br />
+        </form>
+      </FormControl>
+    </Container>
   );
 };
 
