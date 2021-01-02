@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import LogoHeader from '../../components/LogoHeader';
 
 const Login = ({ setToken, username, setUsername }) => {
@@ -41,12 +42,14 @@ const Login = ({ setToken, username, setUsername }) => {
     <Container maxWidth="sm" style={{ textAlign: 'center' }}>
       <LogoHeader />
       <Typography variant="h5">LOG IN</Typography>
+      <br />
+      <br />
       {errors &&
         errors.map(error => (
-          <div className="alert alert-warning" key={error}>
-            <h4 className="alert-heading">Error!</h4>
-            <p className="mb-0">{error}</p>
-          </div>
+          <Alert severity="error" key={error} style={{ textAlign: 'left' }}>
+            <AlertTitle>Error!</AlertTitle>
+            {error}
+          </Alert>
         ))}
       <br />
       <br />

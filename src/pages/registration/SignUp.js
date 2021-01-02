@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import LogoHeader from '../../components/LogoHeader';
 
 const SignUp = ({ setToken, username, setUsername }) => {
@@ -51,17 +52,17 @@ const SignUp = ({ setToken, username, setUsername }) => {
       <Typography variant="h5">REGISTER</Typography>
       {nonFiledErrors &&
         nonFiledErrors.map(error => (
-          <div className="alert alert-warning" key={error}>
-            <h4 className="alert-heading">Warning!</h4>
-            <p className="mb-0">{error}</p>
-          </div>
+          <Alert key={error} severity="warning" style={{ textAlign: 'left' }}>
+            <AlertTitle>Warning!</AlertTitle>
+            {error}
+          </Alert>
         ))}
       {errors &&
         errors.map(error => (
-          <div className="alert alert-danger" key={error}>
-            <h4 className="alert-heading">Error!</h4>
-            <p className="mb-0">{error}</p>
-          </div>
+          <Alert key={error} severity="error" style={{ textAlign: 'left' }}>
+            <AlertTitle>Error!</AlertTitle>
+            {error}
+          </Alert>
         ))}
       <br />
       <br />
