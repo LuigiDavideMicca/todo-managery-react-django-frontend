@@ -12,7 +12,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-
+import Button from '@material-ui/core/Button';
 import Todos from '../components/Todos';
 import Spinner from '../components/Spinner';
 
@@ -91,96 +91,90 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
   }, []);
 
   return (
-    <>
-      <Container maxWidth="sm" style={{ textAlign: 'center' }}>
-        <Spinner loading={loading} />
-        <Card
-          raised
-          style={{
-            visibility: `${visible}`,
-            paddingTop: '5rem',
-            paddingBottom: '5rem',
-            paddingLeft: '10rem',
-            paddingRight: '10rem',
-          }}>
-          <CardContent>
-            <Typography variant="h4" className="home-title">
-              Hello,
-              {user && user.username}
-            </Typography>
-            <br />
-            <Typography variant="h6">
-              You have created {todos && todos.length} todos for now
-            </Typography>
-            <br />
-            <br />
-            <Divider />
-            <br />
-            <br />
-            <Typography variant="p">
-              There are {categories && categories.length} categories in your Todo Managery.
-            </Typography>
-            <br />
-          </CardContent>
-        </Card>
-        <br />
-        <br />
-        <br />
-        {lastTodos.length > 0 && (
-          <>
-            <Typography
-              variant="h5"
-              // eslint-disable-next-line prettier/prettier
-              style={{ visibility: `${visible}` }}
+    <Container xs={12} style={{ textAlign: 'center' }}>
+      <Spinner loading={loading} />
+      <Card
+        raised
+        style={{
+          visibility: `${visible}`,
+        }}>
+        <CardContent>
+          <Typography variant="h4" className="home-title">
+            Hello,
+            {user && user.username}
+          </Typography>
+          <br />
+          <Typography variant="h6">
+            You have created {todos && todos.length} todos for now
+          </Typography>
+          <br />
+          <br />
+          <Divider />
+          <br />
+          <br />
+          <Typography variant="p">
+            There are {categories && categories.length} categories in your Todo Managery.
+          </Typography>
+          <br />
+        </CardContent>
+      </Card>
+      <br />
+      <br />
+      <br />
+      {lastTodos.length > 0 && (
+        <Container>
+          <Typography
+            variant="h5"
+            // eslint-disable-next-line prettier/prettier
+            style={{ visibility: `${visible}` }}
             >
-              Your Todos Expirig Soon
-            </Typography>
-            <br />
-            <br />
-            <br />
-            <Grid container alignItems="center" style={{ visibility: `${visible}` }}>
-              {lastTodos.map(todo => (
-                <Grid item xs={12}>
-                  <Todos
-                    key={todo.id}
-                    title={todo.title}
-                    text={todo.text}
-                    done_by={todo.done_by}
-                    id={todo.id}
-                    category={todo.category}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </>
-        )}
-        {categories.length === 0 && (
-          <>
-            <div style={{ visibility: `${visible}` }}>
-              <h4>Start from Here</h4>
-            </div>
-            <div className="col-6 my-4 mx-auto" style={{ visibility: `${visible}` }}>
-              <Link className="btn btn-outline-primary" to="new-category">
-                Add Your First Category
-              </Link>
-            </div>
-          </>
-        )}
-        {categories.length > 0 && lastTodos.length === 0 && (
-          <>
-            <div className="py-4 px-5 mx-auto" style={{ visibility: `${visible}` }}>
-              <h4>Start from Here</h4>
-            </div>
-            <Link className="btn btn-outline-dark mx-5 my-4" to="/new-todo">
-              Add Todo
-            </Link>
-            <Link className="btn btn-outline-primary mx-5 my-4" to="new-category">
-              Add Another Category
-            </Link>
-          </>
-        )}
-      </Container>
-    </>
+            Your Todos Expirig Soon
+          </Typography>
+          <br />
+          <br />
+          <br />
+          <Grid container alignItems="center" style={{ visibility: `${visible}` }}>
+            {lastTodos.map(todo => (
+              <Grid item xs={12} style={{ margin: '0 auto' }}>
+                <Todos
+                  key={todo.id}
+                  title={todo.title}
+                  text={todo.text}
+                  done_by={todo.done_by}
+                  id={todo.id}
+                  category={todo.category}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      )}
+      {categories.length === 0 && (
+        <Container style={{ visibility: `${visible}` }}>
+          <Typography variant="h4">Start from Here</Typography>
+          <br />
+          <br />
+          <Button color="secondary" variant="contained" href="new-category">
+            Add Your First Category
+          </Button>
+        </Container>
+      )}
+      {categories.length > 0 && lastTodos.length === 0 && (
+        <Container style={{ visibility: `${visible}` }}>
+          <Typography variant="h4">Start from Here</Typography>
+          <br />
+          <br />
+          <Button color="secondary" variant="contained" href="/new-todo">
+            Add Todo
+          </Button>
+          <br />
+          <br />
+          <Button color="secondary" variant="contained" href="new-category">
+            Add Another Category
+          </Button>
+        </Container>
+      )}
+    </Container>
   );
 };
 

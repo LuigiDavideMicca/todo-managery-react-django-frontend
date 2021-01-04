@@ -32,7 +32,7 @@ import AddIcon from '@material-ui/icons/Add';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import '../images/pic.ico';
+import logo from '../images/pic.ico';
 
 const drawerWidth = 240;
 
@@ -162,10 +162,11 @@ const Navbar = ({ token, setToken, children, categories, setCategories }) => {
             className={clsx(classes.menuButton, open && classes.hide)}>
             <MenuIcon />
           </IconButton>
+          <Link href="/" style={{ marginRight: '1rem' }}>
+            <img src={logo} width="30" height="30" alt="" />
+          </Link>
           <Typography variant="h6" noWrap>
-            <Link href="/">
-              <img src="pic.ico" width="30" height="30" alt="" />
-            </Link>
+            Todo Managery
           </Typography>
         </Toolbar>
       </AppBar>
