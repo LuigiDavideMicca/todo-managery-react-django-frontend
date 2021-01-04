@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -8,6 +9,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { MenuItem } from '@material-ui/core';
 import Swal from 'sweetalert2';
 
 const UpdateTodo = ({ token }) => {
@@ -73,55 +81,66 @@ const UpdateTodo = ({ token }) => {
 
   return (
     <>
-      <div className="container">
-        <h3 className="py-5 mb-4 d-flex justify-content-center">Update your todo number{id}</h3>
-        <form className="form-group my-3" onSubmit={updateTodo}>
-          <label>Title</label>
-          <input
-            type="text"
-            value={title}
-            className="form-control"
-            placeholder="New Title"
-            onChange={e => setTitle(e.target.value)}
-          />
-          <br />
-          <label>Text</label>
-          <input
-            type="text"
-            className="form-control"
-            value={text}
-            placeholder="New Text"
-            onChange={e => setText(e.target.value)}
-          />
-          <br />
-          <label>Category</label>
-          <select
-            className="form-control"
-            value={category}
-            // eslint-disable-next-line react/jsx-closing-bracket-location
-            onChange={e => setCategory(e.target.value)}>
-            <option value="" />
-            {titles.length > 0 &&
-              titles.map(item => (
-                <option key={item.id} value={item.title}>
-                  {item.title}
-                </option>
-              ))}
-          </select>
-          <br />
-          <label>Date and Time</label>
-          <input
-            required
-            className="form-control"
-            type="datetime-local"
-            value={done_by}
-            onChange={e => setDate(e.target.value)}
-          />
-          <button type="submit" className="btn btn-warning my-5">
-            Update Todo
-          </button>
+      <Container style={{ textAlign: 'center' }}>
+        <Typography variant="h4">Update your todo number {id}</Typography>
+        <br />
+        <br />
+        <form onSubmit={updateTodo}>
+          <FormControl>
+            <TextField
+              id="outlined-basic"
+              required
+              value={title}
+              variant="outlined"
+              label="New Title"
+              onChange={e => setTitle(e.target.value)}
+            />
+            <br />
+            <TextField
+              id="outlined-basic"
+              required
+              variant="outlined"
+              value={text}
+              label=" New Text"
+              onChange={e => setText(e.target.value)}
+            />
+            <br />
+            <br />
+            <Select
+              id="outlined-basic"
+              variant="outlined"
+              label="Category"
+              value={category}
+              // eslint-disable-next-line react/jsx-closing-bracket-location
+              onChange={e => setCategory(e.target.value)}>
+              <MenuItem value="">None</MenuItem>
+              {titles.length > 0 &&
+                titles.map(item => (
+                  <MenuItem key={item.id} value={item.title}>
+                    {item.title}
+                  </MenuItem>
+                ))}
+            </Select>
+            <br />
+            <TextField
+              required
+              id="outlined-basic"
+              variant="outlined"
+              type="datetime-local"
+              value={done_by}
+              onChange={e => setDate(e.target.value)}
+            />
+            <br />
+            <br />
+            <Button
+              type="submit"
+              variant="contained"
+              style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}>
+              Update Todo
+            </Button>
+          </FormControl>
         </form>
-      </div>
+      </Container>
     </>
   );
 };

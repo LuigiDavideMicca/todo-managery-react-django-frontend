@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
@@ -5,6 +7,11 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 import Swal from 'sweetalert2';
 
 const EditCategory = ({ token }) => {
@@ -40,26 +47,31 @@ const EditCategory = ({ token }) => {
 
   return (
     <>
-      <div className="container">
-        <h3 className="py-5 mb-4 d-flex justify-content-center">
-          Update your Category number
-          {id}
-        </h3>
-        <form className="form-group my-4" onSubmit={updateCategory}>
-          <label className="my-3 h5">New Title</label>
-          <input
-            type="text"
-            required
-            value={title}
-            className="form-control"
-            placeholder="New Title"
-            onChange={e => setTitle(e.target.value)}
-          />
-          <button type="submit" className="btn btn-warning my-5">
-            Update Category
-          </button>
+      <Container style={{ textAlign: 'center' }}>
+        <Typography variant="h4">Update your Category number {id}</Typography>
+        <br />
+        <br />
+        <form onSubmit={updateCategory}>
+          <FormControl>
+            <TextField
+              id="outlined-basic"
+              label="Change Title"
+              required
+              value={title}
+              variant="outlined"
+              onChange={e => setTitle(e.target.value)}
+            />
+            <br />
+            <br />
+            <Button
+              type="submit"
+              variant="contained"
+              style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}>
+              Update Category
+            </Button>
+          </FormControl>
         </form>
-      </div>
+      </Container>
     </>
   );
 };

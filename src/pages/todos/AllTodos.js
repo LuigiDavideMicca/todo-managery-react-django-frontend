@@ -3,6 +3,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-named-as-default */
 import { useEffect, useState } from 'react';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Todos from '../../components/Todos';
 import Spinner from '../../components/Spinner';
 
@@ -41,18 +44,20 @@ const AllTodos = ({ todos, token, setTodos }) => {
     }
   }, []);
   return (
-    <div className="container">
+    <Container style={{ textAlign: 'center' }}>
       <Spinner loading={loading} />
-      <h3
-        className="display-5 py-5 mb-4 d-flex justify-content-center"
+      <Typography
+        variant="h4"
         // eslint-disable-next-line react/jsx-closing-bracket-location
         style={{ visibility: `${visible}` }}>
         Your Todos
-      </h3>
-      <div className="row justify-content-center" style={{ visibility: `${visible}` }}>
+      </Typography>
+      <br />
+      <br />
+      <Grid container style={{ visibility: `${visible}` }} alignItems="center">
         {allTodos.length > 0 &&
           allTodos.map(todo => (
-            <div className="col-md-6 col-sm-7" key={todo.id}>
+            <Grid item xs={12} key={todo.id}>
               <Todos
                 key={todo.id}
                 title={todo.title}
@@ -61,26 +66,26 @@ const AllTodos = ({ todos, token, setTodos }) => {
                 id={todo.id}
                 category={todo.category}
               />
-            </div>
+            </Grid>
           ))}
-      </div>
+      </Grid>
       {allTodos.length === 0 && (
         <>
-          <h3
-            className="display-5 pt-5 pb-4 my-1 d-flex justify-content-center"
+          <Typography
+            variant="h4"
             // eslint-disable-next-line react/jsx-closing-bracket-location
             style={{ visibility: `${visible}` }}>
             We are sorry
-          </h3>
-          <h3
-            className="display-5 pt-5 pb-4 my-1 d-flex justify-content-center"
+          </Typography>
+          <Typography
+            variant="h6"
             // eslint-disable-next-line react/jsx-closing-bracket-location
             style={{ visibility: `${visible}` }}>
             It looks like you have not created any todo
-          </h3>
+          </Typography>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 

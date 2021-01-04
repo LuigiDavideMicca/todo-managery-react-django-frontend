@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
@@ -61,6 +62,7 @@ const Login = ({ setToken, username, setUsername }) => {
             label="Your Username"
             variant="outlined"
             onChange={e => setUsername(e.target.value)}
+            placeholder="eg: tester"
             required
           />
           <br />
@@ -77,11 +79,15 @@ const Login = ({ setToken, username, setUsername }) => {
           <br />
           <br />
           <br />
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            variant="contained"
+            style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}
+            type="submit">
             Log In
           </Button>
         </form>
       </FormControl>
+      <br />
       <br />
       <br />
       <Typography>

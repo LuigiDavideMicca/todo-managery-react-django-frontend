@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/control-has-associated-label */
@@ -15,8 +16,8 @@ const Todos = ({ title, text, done_by, id, category }) => {
   return (
     <>
       <Container>
-        <Card variant="outlined">
-          <CardContent style={{ backgroundColor: '#2F2950', color: 'whitesmoke' }}>
+        <Card variant="outlined" style={{ maxWidth: '30rem' }} raised>
+          <CardContent style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}>
             <Typography gutterBottom>
               Category:
               {category}
@@ -33,12 +34,12 @@ const Todos = ({ title, text, done_by, id, category }) => {
             </Typography>
             <CardActions>
               <Button size="small" color="primary">
-                <Link href={`/update-todo/${id}`} underline="none">
+                <Link href={`/update-todo/${id}`} underline="none" style={{ color: '#e43f5a' }}>
                   Change Todo
                 </Link>
               </Button>
               <Button size="small">
-                <Link href={`/delete-todo/${id}`} underline="none">
+                <Link href={`/delete-todo/${id}`} underline="none" style={{ color: '#e43f5a' }}>
                   Delete Todo
                 </Link>
               </Button>

@@ -1,42 +1,43 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { Link } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
+import Card from '@material-ui/core/Card';
+import Container from '@material-ui/core/Container';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const Categories = ({ title, id }) => (
   <>
-    <div className="container">
-      <div className="card text-white bg-dark border-secondary my-4" style={{ maxWidth: '20rem' }}>
-        <div className="card-body">
-          <h4 className="card-title">{title}</h4>
-        </div>
-        <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <button type="button" className="btn btn-danger">
-            actions
-          </button>
-          <div className="btn-group" role="group">
-            <button
-              id="btnGroupDrop4"
-              type="button"
-              className="btn btn-danger dropdown-toggle"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            />
-            <div className="dropdown-menu" aria-labelledby="btnGroupDrop4">
-              <Link className="dropdown-item" to={`/category-todos/${title}`}>
+    <Container>
+      <Card variant="outlined" style={{ maxWidth: '30rem' }}>
+        <CardContent style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}>
+          <Typography gutterBottom variant="h5" component="h5">
+            {title}
+          </Typography>
+          <CardActions>
+            <Button size="small" color="primary">
+              <Link href={`/category-todos/${title}`} underline="none" style={{ color: '#e43f5a' }}>
                 See All Todos in this category
               </Link>
-              <Link className="dropdown-item" to={`/edit-category/${id}`}>
+            </Button>
+            <Button size="small" color="primary">
+              <Link href={`/edit-category/${id}`} underline="none" style={{ color: '#e43f5a' }}>
                 Change Category
               </Link>
-              <Link className="dropdown-item" to={`/delete-category/${id}`}>
+            </Button>
+            <Button size="small" color="primary">
+              <Link href={`/delete-category/${id}`} underline="none" style={{ color: '#e43f5a' }}>
                 Delete Category
               </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Button>
+          </CardActions>
+        </CardContent>
+      </Card>
+      <br />
+      <br />
+    </Container>
   </>
 );
 

@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
 import Todos from '../components/Todos';
@@ -94,7 +95,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
       <Container maxWidth="sm" style={{ textAlign: 'center' }}>
         <Spinner loading={loading} />
         <Card
-          raised="true"
+          raised
           style={{
             visibility: `${visible}`,
             paddingTop: '5rem',
@@ -112,7 +113,9 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
               You have created {todos && todos.length} todos for now
             </Typography>
             <br />
+            <br />
             <Divider />
+            <br />
             <br />
             <Typography variant="p">
               There are {categories && categories.length} categories in your Todo Managery.
@@ -135,9 +138,9 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
             <br />
             <br />
             <br />
-            <div style={{ visibility: `${visible}` }}>
+            <Grid container alignItems="center" style={{ visibility: `${visible}` }}>
               {lastTodos.map(todo => (
-                <div>
+                <Grid item xs={12}>
                   <Todos
                     key={todo.id}
                     title={todo.title}
@@ -146,9 +149,9 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
                     id={todo.id}
                     category={todo.category}
                   />
-                </div>
+                </Grid>
               ))}
-            </div>
+            </Grid>
           </>
         )}
         {categories.length === 0 && (

@@ -29,7 +29,7 @@ const router = ({
   setTodos,
 }) => (
   <Router>
-    <Navbar token={token} setToken={setToken}>
+    <Navbar token={token} setToken={setToken} categories={categories} setCategories={setCategories}>
       <Switch>
         <Route exact path="/">
           {token ? (

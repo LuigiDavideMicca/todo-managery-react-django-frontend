@@ -3,6 +3,9 @@
 /* eslint-disable no-inner-declarations */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Categories from '../../components/Categories';
 import Spinner from '../../components/Spinner';
 
@@ -44,36 +47,41 @@ const AllCategories = ({ categories, token, setCategories }) => {
     }
   }, []);
   return (
-    <div className="container">
+    <Container style={{ textAlign: 'center' }}>
       <Spinner loading={loading} />
-      <h3
-        className="display-5 py-5 mb-4 d-flex justify-content-center"
+      <Typography
+        variant="h4"
+        // eslint-disable-next-line react/jsx-closing-bracket-location
         style={{ visibility: `${visible}` }}>
         Your Categories
-      </h3>
-      <div className="row justify-content-center" style={{ visibility: `${visible}` }}>
+      </Typography>
+      <br />
+      <br />
+      <Grid container style={{ visibility: `${visible}` }} alignItems="center">
         {allCatgories.length > 0 &&
           allCatgories.map(category => (
-            <div className="col-md-6 col-sm-7" key={category.id}>
+            <Grid item xs={12} key={category.id}>
               <Categories key={category.id} title={category.title} id={category.id} />
-            </div>
+            </Grid>
           ))}
-      </div>
+      </Grid>
       {allCatgories.length === 0 && (
         <>
-          <h3
-            className="display-5 pt-5 pb-4 my-1 d-flex justify-content-center"
+          <Typography
+            variant="h4"
+            // eslint-disable-next-line react/jsx-closing-bracket-location
             style={{ visibility: `${visible}` }}>
             We are sorry
-          </h3>
-          <h3
-            className="display-5 pt-5 pb-4 my-1 d-flex justify-content-center"
+          </Typography>
+          <Typography
+            variant="h6"
+            // eslint-disable-next-line react/jsx-closing-bracket-location
             style={{ visibility: `${visible}` }}>
             It looks like you have not created any category
-          </h3>
+          </Typography>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 

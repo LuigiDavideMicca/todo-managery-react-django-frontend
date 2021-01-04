@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/button-has-type */
@@ -7,6 +8,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2';
 
 const DeleteTodo = ({ token }) => {
@@ -39,12 +43,19 @@ const DeleteTodo = ({ token }) => {
   };
 
   return (
-    <div className="container">
-      <h3 className="py-5 mb-4 d-flex justify-content-center">Erase your Todo number {id}?</h3>
-      <button className="btn btn-danger" onClick={eraseTodo}>
+    <Container style={{ textAlign: 'center' }}>
+      <Typography variant="h4">Erase your Todo number {id}?</Typography>
+      <br />
+      <br />
+      <br />
+      <br />
+      <Button
+        onClick={eraseTodo}
+        variant="contained"
+        style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}>
         Erase Todo!
-      </button>
-    </div>
+      </Button>
+    </Container>
   );
 };
 

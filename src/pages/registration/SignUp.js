@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
@@ -69,45 +70,54 @@ const SignUp = ({ setToken, username, setUsername }) => {
       <FormControl>
         <form onSubmit={handleSignup}>
           <TextField
+            id="outlined-basic"
             required
             variant="outlined"
             value={username}
-            placeholder="your desired username"
+            label="your desired username"
+            placeholder="eg: tester"
             onChange={e => setUsername(e.target.value)}
           />
           <br />
           <br />
           <TextField
+            id="outlined-basic"
             type="password"
             variant="outlined"
             required
-            placeholder="type your password"
+            label="type your password"
             value={password1}
             onChange={e => setPassword1(e.target.value)}
           />
           <br />
           <br />
           <TextField
+            id="outlined-basic"
             type="password"
             variant="outlined"
             required
-            placeholder="confirm your password above"
+            label="confirm your password above"
             value={password2}
             onChange={e => setPassword2(e.target.value)}
           />
           <br />
           <br />
           <TextField
+            id="outlined-basic"
             type="email"
             variant="outlined"
             required
-            placeholder="your email"
+            label="your email"
+            placeholder="eg: tester@email.com"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
           <br />
           <br />
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}
+            variant="contained"
+            type="submit">
             Register
           </Button>
           <br />

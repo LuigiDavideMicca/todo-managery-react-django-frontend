@@ -1,8 +1,9 @@
+/* eslint-disable no-inner-declarations */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from '@material-ui/core/Link';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -17,8 +18,20 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import HomeIcon from '@material-ui/icons/Home';
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
+import CategoryIcon from '@material-ui/icons/Category';
+import ClassIcon from '@material-ui/icons/Class';
+import EventIcon from '@material-ui/icons/Event';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import '../images/pic.ico';
 
 const drawerWidth = 240;
@@ -53,6 +66,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: '#1b1b2f',
   },
   drawerHeader: {
     display: 'flex',
@@ -80,10 +94,40 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Navbar = ({ token, setToken, children }) => {
+const Navbar = ({ token, setToken, children, categories, setCategories }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [links, showLinks] = useState(false);
+  const [allCatgories, setAllCategories] = useState(categories);
+  useEffect(() => {
+    if (categories.length === 0) {
+      async function getCategories() {
+        try {
+          const resp = await fetch(
+            'https://luigidavidemicca.pythonanywhere.com/api/v1/categories/',
+            {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'same-origin',
+              headers: {
+                Authorization: `Token ${token}`,
+                'Content-Type': 'application/json',
+              },
+              redirect: 'follow',
+              referrerPolicy: 'no-referrer',
+            }
+          );
+          const results = await resp.json();
+          setCategories(results);
+          setAllCategories(results);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      getCategories();
+    }
+  }, [categories]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -96,10 +140,15 @@ const Navbar = ({ token, setToken, children }) => {
     setToken(null);
     sessionStorage.clear();
   };
+  const discoverLinks = () => {
+    showLinks(!links);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        style={{ backgroundColor: '#1b1b2f' }}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -115,13 +164,7 @@ const Navbar = ({ token, setToken, children }) => {
           </IconButton>
           <Typography variant="h6" noWrap>
             <Link href="/">
-              <img
-                src="pic.ico"
-                width="30"
-                height="30"
-                className="d-inline-block align-top mx-4"
-                alt=""
-              />
+              <img src="pic.ico" width="30" height="30" alt="" />
             </Link>
           </Typography>
         </Toolbar>
@@ -134,10 +177,10 @@ const Navbar = ({ token, setToken, children }) => {
         classes={{
           paper: classes.drawerPaper,
         }}>
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+        <div className={classes.drawerHeader} style={{ backgroundColor: '#1b1b2f' }}>
+          <IconButton onClick={handleDrawerClose} style={{ color: 'whitesmoke' }}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            <Typography>Todo Managery</Typography>
+            <Typography style={{ color: '#E43F5A' }}>Todo Managery</Typography>
           </IconButton>
         </div>
         <Divider />
@@ -145,46 +188,78 @@ const Navbar = ({ token, setToken, children }) => {
           {token && (
             <>
               <List>
-                <Typography style={{ textAlign: 'center' }}>ALL</Typography>
+                <Typography style={{ textAlign: 'center', color: '#E43F5A' }}>ALL</Typography>
                 <br />
                 <ListItem button>
-                  <Link underline="none" href="/">
+                  <ListItemIcon style={{ color: 'whitesmoke' }}>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <Link underline="none" href="/" style={{ color: 'whitesmoke' }}>
                     Home
                   </Link>
                 </ListItem>
                 <ListItem button>
-                  <Link underline="none" href="/all-todos">
+                  <ListItemIcon style={{ color: 'whitesmoke' }}>
+                    <FormatListNumberedIcon />
+                  </ListItemIcon>
+                  <Link underline="none" href="/all-todos" style={{ color: 'whitesmoke' }}>
                     See all todos
                   </Link>
                 </ListItem>
                 <ListItem button>
-                  <Link underline="none" href="/all-categories">
+                  <ListItemIcon style={{ color: 'whitesmoke' }}>
+                    <CategoryIcon />
+                  </ListItemIcon>
+                  <Link underline="none" href="/all-categories" style={{ color: 'whitesmoke' }}>
                     See all categories
                   </Link>
                 </ListItem>
                 <ListItem button>
-                  <Link underline="none" href="/calendar">
+                  <ListItemIcon style={{ color: 'whitesmoke' }}>
+                    <EventIcon />
+                  </ListItemIcon>
+                  <Link underline="none" href="/calendar" style={{ color: 'whitesmoke' }}>
                     See your Calendar
                   </Link>
                 </ListItem>
+                <br />
                 <Divider />
                 <br />
-                <Typography style={{ textAlign: 'center' }}>QUICK ACTIONS</Typography>
+                <Typography style={{ textAlign: 'center', color: '#E43F5A' }}>
+                  CATEGORIES
+                </Typography>
                 <br />
-                <ListItem button>
-                  <Link underline="none" href="/new-todo">
-                    Add Todo
-                  </Link>
-                </ListItem>
-                <ListItem button>
-                  <Link underline="none" href="/new-category">
-                    Add Category
-                  </Link>
-                </ListItem>
-                <ListItem button style={{ background: '#DF4242' }}>
-                  <Link underline="none" onClick={removeToken} href="/">
-                    Log Out
-                  </Link>
+                {allCatgories.length > 0 ? (
+                  allCatgories.map(category => (
+                    <ListItem button key={category.id}>
+                      <ListItemIcon style={{ color: 'whitesmoke' }}>
+                        <ClassIcon />
+                      </ListItemIcon>
+                      <Link
+                        underline="none"
+                        href={`/category-todos/${category.title}`}
+                        style={{ color: 'whitesmoke' }}>
+                        {category.title}
+                      </Link>
+                    </ListItem>
+                  ))
+                ) : (
+                  <Typography style={{ color: 'whitesmoke' }}>No categories created</Typography>
+                )}
+              </List>
+              <Divider />
+              <List>
+                <ListItem component="a">
+                  <Button
+                    size="large"
+                    style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '5rem' }}
+                    variant="contained"
+                    onClick={removeToken}
+                    color="secondary"
+                    startIcon={<VpnKeyIcon />}
+                    href="/">
+                    LOG OUT
+                  </Button>
                 </ListItem>
               </List>
             </>
@@ -194,18 +269,18 @@ const Navbar = ({ token, setToken, children }) => {
             <>
               <List>
                 <ListItem button>
-                  <ListItemIcon>
-                    <ChevronRightIcon />
+                  <ListItemIcon style={{ color: '#E43F5A' }}>
+                    <LockOpenIcon />
                   </ListItemIcon>
-                  <Link underline="none" href="/login">
+                  <Link underline="none" href="/login" style={{ color: '#E43F5A' }}>
                     Login
                   </Link>
                 </ListItem>
                 <ListItem button>
-                  <ListItemIcon>
-                    <ChevronRightIcon />
+                  <ListItemIcon style={{ color: '#E43F5A' }}>
+                    <EnhancedEncryptionIcon />
                   </ListItemIcon>
-                  <Link underline="none" href="/signup">
+                  <Link underline="none" href="/signup" style={{ color: '#E43F5A' }}>
                     Register
                   </Link>
                 </ListItem>
@@ -213,7 +288,6 @@ const Navbar = ({ token, setToken, children }) => {
             </>
           )}
         </List>
-        <Divider />
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -221,6 +295,38 @@ const Navbar = ({ token, setToken, children }) => {
         })}>
         <div className={classes.drawerHeader} />
         {children}
+        {links && (
+          <Grid container direction="column">
+            <Grid item>
+              <Fab
+                variant="extended"
+                color="primary"
+                href="/new-todo"
+                style={{ margin: '0.5rem', backgroundColor: '#1f4068' }}>
+                <AddIcon />
+                Todo
+              </Fab>
+            </Grid>
+            <Grid item>
+              <Fab
+                variant="extended"
+                color="primary"
+                href="/new-category"
+                style={{ margin: '0.5rem', backgroundColor: '#1f4068' }}>
+                <AddIcon />
+                Category
+              </Fab>
+            </Grid>
+          </Grid>
+        )}
+        {token && (
+          <Fab
+            aria-label="add"
+            onClick={discoverLinks}
+            style={{ backgroundColor: '#E43F5A', color: 'whitesmoke' }}>
+            <AddIcon />
+          </Fab>
+        )}
       </main>
     </div>
   );
