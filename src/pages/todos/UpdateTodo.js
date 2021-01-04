@@ -141,6 +141,8 @@ const UpdateTodo = ({ token }) => {
           </FormControl>
         </form>
       </Container>
+      <br />
+      <br />
     </>
   );
 };

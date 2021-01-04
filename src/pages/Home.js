@@ -16,7 +16,6 @@ import Button from '@material-ui/core/Button';
 import Todos from '../components/Todos';
 import Spinner from '../components/Spinner';
 
-import '../main.css';
 import '../images/pic.ico';
 
 const Home = ({ categories, setCategories, todos, setTodos, token }) => {
@@ -99,10 +98,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
           visibility: `${visible}`,
         }}>
         <CardContent>
-          <Typography variant="h4" className="home-title">
-            Hello,
-            {user && user.username}
-          </Typography>
+          <Typography variant="h4">Hello, {user && user.username}</Typography>
           <br />
           <Typography variant="h6">
             You have created {todos && todos.length} todos for now
@@ -169,7 +165,7 @@ const Home = ({ categories, setCategories, todos, setTodos, token }) => {
           </Button>
           <br />
           <br />
-          <Button color="secondary" variant="contained" href="new-category">
+          <Button color="primary" variant="contained" href="new-category">
             Add Another Category
           </Button>
         </Container>

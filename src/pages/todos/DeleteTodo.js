@@ -55,6 +55,8 @@ const DeleteTodo = ({ token }) => {
         style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}>
         Erase Todo!
       </Button>
+      <br />
+      <br />
     </Container>
   );
 };

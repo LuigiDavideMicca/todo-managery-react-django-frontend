@@ -72,6 +72,8 @@ const EditCategory = ({ token }) => {
           </FormControl>
         </form>
       </Container>
+      <br />
+      <br />
     </>
   );
 };

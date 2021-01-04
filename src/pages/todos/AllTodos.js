@@ -85,6 +85,8 @@ const AllTodos = ({ todos, token, setTodos }) => {
           </Typography>
         </>
       )}
+      <br />
+      <br />
     </Container>
   );
 };

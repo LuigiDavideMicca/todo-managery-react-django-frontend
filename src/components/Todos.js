@@ -1,8 +1,8 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import Link from '@material-ui/core/Link';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import CardActions from '@material-ui/core/CardActions';
@@ -18,30 +18,34 @@ const Todos = ({ title, text, done_by, id, category }) => {
       <Container>
         <Card variant="outlined" style={{ maxWidth: '30rem' }} raised>
           <CardContent style={{ backgroundColor: '#1f4068', color: 'whitesmoke' }}>
-            <Typography gutterBottom>
-              Category:
-              {category}
+            <Typography variant="p" gutterBottom>
+              Category: {category}
             </Typography>
-            <Typography variant="h4" component="h4" gutterBottom>
+            <br />
+            <br />
+            <Typography variant="h5" component="h5" gutterBottom>
               {title}
             </Typography>
             <Typography variant="h6" gutterBottom>
               {text}
             </Typography>
-            <Typography>
-              Done by:
+            <Typography variant="p" gutterBottom>
               {done_by}
             </Typography>
+            <br />
+            <br />
             <CardActions>
-              <Button size="small" color="primary">
-                <Link href={`/update-todo/${id}`} underline="none" style={{ color: '#e43f5a' }}>
-                  Change Todo
-                </Link>
+              <Button
+                size="small"
+                href={`/update-todo/${id}`}
+                style={{ backgroundColor: '#e43f5a', color: 'whitesmoke' }}>
+                Change
               </Button>
-              <Button size="small">
-                <Link href={`/delete-todo/${id}`} underline="none" style={{ color: '#e43f5a' }}>
-                  Delete Todo
-                </Link>
+              <Button
+                size="small"
+                href={`/delete-todo/${id}`}
+                style={{ backgroundColor: '#e43f5a', color: 'whitesmoke' }}>
+                Delete
               </Button>
             </CardActions>
           </CardContent>

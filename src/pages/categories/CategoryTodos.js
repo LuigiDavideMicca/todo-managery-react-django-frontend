@@ -78,6 +78,8 @@ const CategoriesTodo = ({ todos, token, setTodos }) => {
           </Typography>
         </>
       )}
+      <br />
+      <br />
     </Container>
   );
 };

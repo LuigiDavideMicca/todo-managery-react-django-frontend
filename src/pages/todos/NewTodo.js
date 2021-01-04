@@ -136,6 +136,8 @@ const NewTodo = ({ token }) => {
           </FormControl>
         </form>
       </Container>
+      <br />
+      <br />
     </>
   );
 };

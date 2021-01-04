@@ -67,6 +67,8 @@ const NewCategory = ({ token }) => {
           </FormControl>
         </form>
       </Container>
+      <br />
+      <br />
     </>
   );
 };

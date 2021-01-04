@@ -11,6 +11,8 @@ const NoPage = () => (
     <Typography variant="h6">
       We are sorry but an error has occured, requested page not found!
     </Typography>
+    <br />
+    <br />
   </Container>
 );
 
